@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEDIK CLINIC - Rasmiy Veb-sayt va CRM</title>
+    <title>MEDIK CLINIC - Rasmiy Veb-sayt va Admin Panel</title>
+    <!-- Tailwind CSS va Lucide Iconlar -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -16,49 +17,29 @@
 </head>
 <body class="bg-slate-900 font-sans antialiased text-slate-100 h-screen overflow-hidden flex flex-col">
 
-    <!-- 1. OMMAVIY SAHIFA (Bemorlar va mehmonlar uchun) -->
+    <!-- 1. OMMAVIY SAHIFA (Bemorlar uchun asosiy sahifa va ichki ro'yxatdan o'tish) -->
     <div id="public-site" class="flex-1 overflow-y-auto flex flex-col justify-between">
-        <header class="bg-slate-950 border-b border-slate-800 px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
+        <header class="bg-slate-950 border-b border-slate-800 px-8 py-4 flex justify-between items-center shadow-md">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showPublicHome()">
                 <div class="bg-indigo-600 text-white p-2 rounded-xl">
                     <i data-lucide="activity" class="w-5 h-5"></i>
                 </div>
                 <h1 class="text-base font-bold tracking-wider text-white">MEDIK CLINIC</h1>
             </div>
             <div class="flex items-center space-x-4">
+                <button onclick="showRegisterModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-medium transition-all shadow-md shadow-indigo-600/20">Qabulga yozilish</button>
                 <span class="text-xs text-slate-400">Ish vaqti: 24/7</span>
             </div>
         </header>
 
-        <main class="max-w-4xl mx-auto px-6 py-12 flex-1 w-full space-y-8">
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl font-extrabold text-white">Klinikamizga Xush Kelibsiz</h2>
-                <p class="text-sm text-slate-400">Malakali shifokorlar qabuliga onlayn ro'yxatdan o'ting.</p>
-            </div>
-
-            <div class="bg-slate-950 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
-                <h3 class="text-lg font-bold text-indigo-400">Qabulga yozilish</h3>
-                <form onsubmit="handlePublicRegister(event)" class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">F.I.Sh</label>
-                        <input type="text" id="pub-name" placeholder="Ism familiyangiz" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" required>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Telefon raqam</label>
-                        <input type="text" id="pub-phone" placeholder="+998 90 123-45-67" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" required>
-                    </div>
-                    <div class="col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Shifokor yoki Bo'limni tanlang</label>
-                        <select id="pub-service" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
-                            <option>Terapiya (Dr. Alisherov)</option>
-                            <option>Kardiologiya (Dr. Karimov)</option>
-                            <option>Nevrologiya (Dr. Saidov)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="col-span-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-sm">
-                        Ro'yxatdan o'tish
-                    </button>
-                </form>
+        <main id="public-main-content" class="max-w-4xl mx-auto px-6 py-16 flex-1 w-full space-y-8 flex flex-col justify-center items-center text-center">
+            <div class="space-y-4 max-w-2xl">
+                <span class="bg-indigo-600/20 text-indigo-400 text-xs px-3 py-1 rounded-full border border-indigo-500/30">Ishonchli Tibbiy Markaz</span>
+                <h2 class="text-4xl font-extrabold text-white tracking-tight">Sog'ligingiz — Bizning Oliy Maqsadimiz</h2>
+                <p class="text-sm text-slate-400 leading-relaxed">Malakali shifokorlar qabuliga onlayn yoziling, xizmatlarimizdan foydalaning va qulay tibbiy xizmatdan bahramand bo'ling. Ro'yxatdan o'tish uchun quyidagi tugmani bosing.</p>
+                <div class="pt-4 flex justify-center space-x-4">
+                    <button onclick="showRegisterModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-sm">Onlayn Ro'yxatdan O'tish</button>
+                </div>
             </div>
         </main>
 
@@ -67,8 +48,9 @@
         </footer>
     </div>
 
-    <!-- 2. ADMIN PANEL (Yashirin rejim) -->
+    <!-- 2. ADMIN PANEL (Yashirin boshqaruv paneli) -->
     <div id="admin-container" class="hidden flex-1 flex h-screen overflow-hidden">
+        <!-- Yon menyu (Sidebar) -->
         <aside class="w-64 bg-slate-950 border-r border-slate-800 flex flex-col justify-between">
             <div>
                 <div class="p-4 flex items-center justify-between border-b border-slate-800">
@@ -83,25 +65,25 @@
                     </div>
                 </div>
                 <nav class="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-130px)] text-sm">
-                    <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
                         <i data-lucide="pie-chart" class="w-4 h-4"></i><span>Dashboard</span>
                     </button>
-                    <button onclick="switchTab('patients')" id="btn-patients" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
-                        <i data-lucide="users" class="w-4 h-4"></i><span>Bemorlar (To'lov uchun bosing)</span>
+                    <button onclick="switchTab('patients')" id="btn-patients" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
+                        <i data-lucide="users" class="w-4 h-4"></i><span>Bemorlar</span>
                     </button>
-                    <button onclick="switchTab('appointments')" id="btn-appointments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('appointments')" id="btn-appointments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
                         <i data-lucide="calendar-check" class="w-4 h-4"></i><span>Qabullar</span>
                     </button>
-                    <button onclick="switchTab('doctors')" id="btn-doctors" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('doctors')" id="btn-doctors" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
                         <i data-lucide="user-plus" class="w-4 h-4"></i><span>Shifokorlar</span>
                     </button>
-                    <button onclick="switchTab('rooms')" id="btn-rooms" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('rooms')" id="btn-rooms" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
                         <i data-lucide="home" class="w-4 h-4"></i><span>Xonalar</span>
                     </button>
-                    <button onclick="switchTab('services')" id="btn-services" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('services')" id="btn-services" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
                         <i data-lucide="layers" class="w-4 h-4"></i><span>Xizmatlar</span>
                     </button>
-                    <button onclick="switchTab('payments')" id="btn-payments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('payments')" id="btn-payments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
                         <i data-lucide="credit-card" class="w-4 h-4"></i><span>To'lovlar & Chek</span>
                     </button>
                 </nav>
@@ -113,49 +95,50 @@
             </div>
         </aside>
 
+        <!-- Asosiy Admin Ishchi Maydoni -->
         <div class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-900">
             <header class="bg-slate-950 border-b border-slate-800 h-16 flex items-center justify-between px-8">
                 <h2 class="text-sm font-bold text-white">Admin Boshqaruv Markazi</h2>
                 <span class="text-xs bg-indigo-600/20 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/30">Administrator</span>
             </header>
 
-            <main class="flex-1 overflow-y-auto p-8">
-                <!-- Dashboard -->
+            <main class="flex-1 overflow-y-auto p-8 space-y-6">
+                <!-- 1. Dashboard Tab -->
                 <div id="tab-dashboard" class="space-y-6">
                     <h2 class="text-2xl font-bold text-white">Ko'rsatkichlar</h2>
                     <div class="grid grid-cols-3 gap-6">
-                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-lg">
                             <p class="text-xs text-slate-400 uppercase font-bold">Jami Bemorlar</p>
                             <h3 id="stat-patients" class="text-3xl font-bold mt-2 text-white">1</h3>
                         </div>
-                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-lg">
                             <p class="text-xs text-slate-400 uppercase font-bold">Shifokorlar</p>
                             <h3 id="stat-doctors" class="text-3xl font-bold mt-2 text-emerald-400">1</h3>
                         </div>
-                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-lg">
                             <p class="text-xs text-slate-400 uppercase font-bold">Tushum</p>
                             <h3 id="stat-revenue" class="text-3xl font-bold mt-2 text-amber-400">150,000 so'm</h3>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bemorlar (Ustiga bossa to'lov chiqadi) -->
+                <!-- 2. Bemorlar Tab -->
                 <div id="tab-patients" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <div>
                             <h2 class="text-2xl font-bold text-white">Bemorlar Bazasi</h2>
-                            <p class="text-sm text-slate-400">Bemor ustiga bosib to'lov qabul qilishingiz mumkin</p>
+                            <p class="text-sm text-slate-400">Bemor ismini ustiga bosib to'lov oynasini tez ochishingiz mumkin</p>
                         </div>
-                        <button onclick="openModal('patient')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Bemor qo'shish</button>
+                        <button onclick="openModal('patient')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-md shadow-indigo-600/20">+ Bemor qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
                                     <th class="py-3 px-6">ID</th>
-                                    <th class="py-3 px-6">F.I.Sh (Bosish mumkin)</th>
+                                    <th class="py-3 px-6">F.I.Sh</th>
                                     <th class="py-3 px-6">Telefon</th>
-                                    <th class="py-3 px-6">Tashxis</th>
+                                    <th class="py-3 px-6">Tashxis / Bo'lim</th>
                                     <th class="py-3 px-6 text-right">Amallar</th>
                                 </tr>
                             </thead>
@@ -166,7 +149,7 @@
                                     <td class="py-4 px-6 text-slate-300">+998 90 111-22-33</td>
                                     <td class="py-4 px-6 text-slate-300">Terapiya</td>
                                     <td class="py-4 px-6 text-right space-x-2" onclick="event.stopPropagation()">
-                                        <button onclick="deleteRow(this)" class="text-rose-400 text-xs">O'chirish</button>
+                                        <button onclick="deleteRow(this)" class="text-rose-400 hover:text-rose-300 text-xs font-medium">O'chirish</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -174,73 +157,109 @@
                     </div>
                 </div>
 
-                <!-- Qabullar -->
+                <!-- 3. Qabullar Tab -->
                 <div id="tab-appointments" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <h2 class="text-2xl font-bold text-white">Qabullar</h2>
-                        <button onclick="openModal('appointment')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Qabul qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">Qabullar Ro'yxati</h2>
+                        <button onclick="openModal('appointment')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Qabul qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
                         <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
+                                    <th class="py-3 px-6">Ma'lumot</th>
+                                    <th class="py-3 px-6 text-right">Amallar</th>
+                                </tr>
+                            </thead>
                             <tbody id="table-appointments" class="divide-y divide-slate-800 text-sm">
-                                <tr><td class="py-4 px-6 text-white">Anvar Karimov - Dr. Alisherov (10:00)</td></tr>
+                                <tr>
+                                    <td class="py-4 px-6 text-white">Anvar Karimov - Dr. Alisherov (10:00)</td>
+                                    <td class="py-4 px-6 text-right"><button onclick="deleteRow(this)" class="text-rose-400 text-xs">O'chirish</button></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Shifokorlar -->
+                <!-- 4. Shifokorlar Tab -->
                 <div id="tab-doctors" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold text-white">Shifokorlar</h2>
-                        <button onclick="openModal('doctor')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Shifokor qo'shish</button>
+                        <button onclick="openModal('doctor')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Shifokor qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
                         <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
+                                    <th class="py-3 px-6">F.I.Sh va Mutaxassislik</th>
+                                    <th class="py-3 px-6 text-right">Amallar</th>
+                                </tr>
+                            </thead>
                             <tbody id="table-doctors" class="divide-y divide-slate-800 text-sm">
-                                <tr><td class="py-4 px-6 text-white">Dr. Alisherov O. - Kardiolog</td></tr>
+                                <tr>
+                                    <td class="py-4 px-6 text-white">Dr. Alisherov O. - Kardiolog</td>
+                                    <td class="py-4 px-6 text-right"><button onclick="deleteRow(this)" class="text-rose-400 text-xs">O'chirish</button></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Xonalar -->
+                <!-- 5. Xonalar Tab -->
                 <div id="tab-rooms" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <h2 class="text-2xl font-bold text-white">Xonalar</h2>
-                        <button onclick="openModal('room')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Xona qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">Klinika Xonalari</h2>
+                        <button onclick="openModal('room')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Xona qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
                         <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
+                                    <th class="py-3 px-6">Xona raqami va holati</th>
+                                    <th class="py-3 px-6 text-right">Amallar</th>
+                                </tr>
+                            </thead>
                             <tbody id="table-rooms" class="divide-y divide-slate-800 text-sm">
-                                <tr><td class="py-4 px-6 text-white">102-xona (Bo'sh)</td></tr>
+                                <tr>
+                                    <td class="py-4 px-6 text-white">102-xona (Bo'sh)</td>
+                                    <td class="py-4 px-6 text-right"><button onclick="deleteRow(this)" class="text-rose-400 text-xs">O'chirish</button></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Xizmatlar -->
+                <!-- 6. Xizmatlar Tab -->
                 <div id="tab-services" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <h2 class="text-2xl font-bold text-white">Xizmatlar</h2>
-                        <button onclick="openModal('service')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Xizmat qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">Xizmatlar Narxlari</h2>
+                        <button onclick="openModal('service')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Xizmat qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
                         <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
+                                    <th class="py-3 px-6">Xizmat nomi va narxi</th>
+                                    <th class="py-3 px-6 text-right">Amallar</th>
+                                </tr>
+                            </thead>
                             <tbody id="table-services" class="divide-y divide-slate-800 text-sm">
-                                <tr><td class="py-4 px-6 text-white">Umumiy ko'rik - 150,000 so'm</td></tr>
+                                <tr>
+                                    <td class="py-4 px-6 text-white">Umumiy ko'rik - 150,000 so'm</td>
+                                    <td class="py-4 px-6 text-right"><button onclick="deleteRow(this)" class="text-rose-400 text-xs">O'chirish</button></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- To'lovlar & Chek -->
+                <!-- 7. To'lovlar & Chek Tab -->
                 <div id="tab-payments" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold text-white">To'lovlar va Cheklar</h2>
-                        <button onclick="openModal('payment')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ To'lov qo'shish</button>
+                        <button onclick="openModal('payment')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ To'lov qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
                         <table class="w-full text-left">
                             <thead>
                                 <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
@@ -256,7 +275,7 @@
                                     <td class="py-4 px-6 text-slate-300">Umumiy ko'rik</td>
                                     <td class="py-4 px-6 text-amber-400 font-bold">150,000 so'm</td>
                                     <td class="py-4 px-6 text-right">
-                                        <button onclick="printReceipt('Anvar Karimov', 'Umumiy ko\'rik', '150,000 so\'m')" class="bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-lg text-xs border border-emerald-500/30">Chek chiqarish</button>
+                                        <button onclick="printReceipt('Anvar Karimov', 'Umumiy ko\'rik', '150,000 so\'m')" class="bg-emerald-600/20 text-emerald-400 px-3 py-1.5 rounded-lg text-xs font-medium border border-emerald-500/30 hover:bg-emerald-600/30">Chek chiqarish</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -267,26 +286,58 @@
         </div>
     </div>
 
-    <!-- 3. KICHKINA YASHIRIN ADMIN KIRISH TUGMASI (Sahifa pastki o'ng burchagida) -->
+    <!-- 3. YASHIRIN ADMIN KIRISH TUGMASI (Sahifaning quyi o'ng burchagida) -->
     <div class="fixed bottom-4 right-4 z-50">
-        <button onclick="openAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white p-2.5 rounded-full shadow-2xl border border-slate-700 transition-all">
+        <button onclick="openAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white p-3 rounded-full shadow-2xl border border-slate-700 transition-all" title="Admin panelga kirish">
             <i data-lucide="lock" class="w-4 h-4"></i>
         </button>
     </div>
 
-    <!-- ADMIN KOD KIRITISH MODALI -->
+    <!-- ADMIN PAROL KIRITISH MODALI -->
     <div id="admin-login-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl w-80 shadow-2xl space-y-4">
             <h3 class="text-md font-bold text-white text-center">Admin Parolini Kiriting</h3>
             <input type="password" id="admin-secret-pass" placeholder="Parol: admin123" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white text-center focus:outline-none focus:border-indigo-500">
             <div class="flex space-x-2">
-                <button onclick="closeAdminModal()" class="w-1/2 bg-slate-900 text-slate-300 py-2 rounded-xl text-xs">Bekor qilish</button>
-                <button onclick="verifyAdminPass()" class="w-1/2 bg-indigo-600 text-white py-2 rounded-xl text-xs font-medium">Kirish</button>
+                <button onclick="closeAdminModal()" class="w-1/2 bg-slate-900 hover:bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-medium transition-all">Bekor qilish</button>
+                <button onclick="verifyAdminPass()" class="w-1/2 bg-indigo-600 hover:bg-indigo-500 text-white py-2 rounded-xl text-xs font-medium transition-all">Kirish</button>
             </div>
         </div>
     </div>
 
-    <!-- PRINT AREA (Chek shabloni) -->
+    <!-- RO'YXATDAN O'TISH MODALI (Faqat "Qabulga yozilish" bosilganda ochiladi) -->
+    <div id="register-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+        <div class="bg-slate-950 border border-slate-800 p-8 rounded-2xl w-full max-w-md shadow-2xl space-y-6 relative">
+            <button onclick="closeRegisterModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <div class="space-y-2 text-center">
+                <h3 class="text-xl font-bold text-white">Qabulga yozilish</h3>
+                <p class="text-xs text-slate-400">Ma'lumotlaringizni kiriting va ro'yxatdan o'ting</p>
+            </div>
+            <form onsubmit="handlePublicRegister(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">F.I.Sh</label>
+                    <input type="text" id="pub-name" placeholder="Ism familiyangiz" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Telefon raqam</label>
+                    <input type="text" id="pub-phone" placeholder="+998 90 123-45-67" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Shifokor yoki Bo'limni tanlang</label>
+                    <select id="pub-service" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                        <option>Terapiya (Dr. Alisherov)</option>
+                        <option>Kardiologiya (Dr. Karimov)</option>
+                        <option>Nevrologiya (Dr. Saidov)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-sm">
+                    Tasdiqlash va yozilish
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PRINT AREA (Kassa Cheki Shabloni) -->
     <div id="print-area" class="hidden p-8 bg-white text-slate-900 w-80 mx-auto font-mono">
         <div class="text-center border-b pb-4 mb-4">
             <h2 class="font-bold text-lg">MEDIK CLINIC</h2>
@@ -299,37 +350,55 @@
             <p class="border-t pt-2 mt-2 text-sm flex justify-between"><b>Jami:</b> <span id="r-price" class="font-bold"></span></p>
         </div>
         <div class="text-center text-[10px] text-slate-400 mt-6 border-t pt-4">
-            <p>Sog'lom bo'ling!</p>
+            <p>Sog'lom bo'ling! Tashakkur.</p>
         </div>
     </div>
 
-    <!-- UNIVERSAL QO'SHISH MODALI -->
+    <!-- UNIVERSAL QO'SHISH MODALI (Admin Panel uchun) -->
     <div id="universal-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl w-96 shadow-2xl space-y-4">
-            <h3 id="modal-title" class="text-lg font-bold text-white">Qo'shish</h3>
-            <div id="modal-fields" class="space-y-3"></div>
+            <h3 id="modal-title" class="text-lg font-bold text-white">Yangi ma'lumot qo'shish</h3>
+            <div id="modal-fields" class="space-y-3">
+                <input type="text" id="f-val1" placeholder="Nomi yoki F.I.Sh" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+            </div>
             <div class="flex justify-end space-x-2 pt-2">
-                <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-sm bg-slate-900 text-slate-300">Bekor qilish</button>
-                <button onclick="saveModalData()" class="px-4 py-2 rounded-xl text-sm bg-indigo-600 text-white font-medium">Saqlash</button>
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-sm bg-slate-900 text-slate-300 hover:bg-slate-800">Bekor qilish</button>
+                <button onclick="saveModalData()" class="px-4 py-2 rounded-xl text-sm bg-indigo-600 text-white font-medium hover:bg-indigo-500">Saqlash</button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Logika -->
+    <!-- JAVASCRIPT QISMI -->
     <script>
+        // Iconlarni faollashtirish
         lucide.createIcons();
         let currentType = '';
 
+        // Ro'yxatdan o'tish modal oynasini ochish / yopish
+        function showRegisterModal() {
+            document.getElementById('register-modal').classList.remove('hidden');
+        }
+
+        function closeRegisterModal() {
+            document.getElementById('register-modal').classList.add('hidden');
+        }
+
+        function showPublicHome() {
+            document.getElementById('admin-container').classList.add('hidden');
+            document.getElementById('public-site').classList.remove('hidden');
+        }
+
+        // Foydalanuvchi qabulga yozilgandagi xabar
         function handlePublicRegister(e) {
             e.preventDefault();
             const name = document.getElementById('pub-name').value;
-            const phone = document.getElementById('pub-phone').value;
-            const service = document.getElementById('pub-service').value;
-            alert(name + ", qabulga muvaffaqiyatli yozildingiz! Tez orada siz bilan bog'lanamiz.");
+            alert(name + ", qabulga muvaffaqiyatli yozildingiz! Tez orada operatorlarimiz siz bilan bog'lanishadi.");
+            closeRegisterModal();
             document.getElementById('pub-name').value = '';
             document.getElementById('pub-phone').value = '';
         }
 
+        // Admin parolini tekshirib kirish
         function openAdminModal() {
             document.getElementById('admin-login-modal').classList.remove('hidden');
         }
@@ -347,7 +416,7 @@
                 closeAdminModal();
                 switchTab('dashboard');
             } else {
-                alert("Parol noto'g'ri!");
+                alert("Parol noto'g'ri! (Standart parol: admin123)");
             }
         }
 
@@ -356,31 +425,34 @@
             document.getElementById('public-site').classList.remove('hidden');
         }
 
+        // Admin panel ichidagi tablar orasida o'tish
         function switchTab(tabId) {
             const tabs = ['dashboard', 'patients', 'appointments', 'doctors', 'rooms', 'services', 'payments'];
             tabs.forEach(id => {
                 const el = document.getElementById('tab-' + id);
                 const btn = document.getElementById('btn-' + id);
                 if(el) el.classList.add('hidden');
-                if(btn) btn.className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white";
+                if(btn) btn.className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white transition-all";
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium bg-indigo-600 text-white shadow-lg shadow-indigo-600/25";
+            document.getElementById('btn-' + tabId).className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium bg-indigo-600 text-white shadow-lg shadow-indigo-600/25 transition-all";
         }
 
+        // Bemor ustiga bosilganda to'lov oynasiga o'tish
         function openPaymentFromPatient(patientName) {
-            if(confirm(patientName + " uchun to'lov oynasini ochishni xohlaysizmi?")) {
+            if(confirm(patientName + " uchun to'lov oynasini va chekni ochishni xohlaysizmi?")) {
                 switchTab('payments');
                 printReceipt(patientName, "Umumiy ko'rik", "150,000 so'm");
             }
         }
 
+        // Admin panelda element qo'shish modalini ochish
         function openModal(type) {
             currentType = type;
             const modal = document.getElementById('universal-modal');
             const fields = document.getElementById('modal-fields');
-            document.getElementById('modal-title').innerText = "Yangi qo'shish";
-            fields.innerHTML = `<input type="text" id="f-val1" placeholder="Nomi / F.I.Sh" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">`;
+            document.getElementById('modal-title').innerText = "Yangi " + type + " qo'shish";
+            fields.innerHTML = `<input type="text" id="f-val1" placeholder="Ma'lumotni kiriting..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">`;
             modal.classList.remove('hidden');
         }
 
@@ -390,22 +462,25 @@
 
         function saveModalData() {
             const val = document.getElementById('f-val1').value;
-            if(!val) return alert("Qiymat kiriting!");
+            if(!val) return alert("Iltimos, ma'lumot kiriting!");
             const tbody = document.getElementById('table-' + currentType + 's');
             if(tbody) {
                 let row = document.createElement('tr');
-                row.innerHTML = `<td class="py-4 px-6 text-white">${val}</td>`;
+                row.className = "hover:bg-slate-900/50";
+                row.innerHTML = `<td class="py-4 px-6 text-white">${val}</td><td class="py-4 px-6 text-right"><button onclick="deleteRow(this)" class="text-rose-400 text-xs">O'chirish</button></td>`;
                 tbody.appendChild(row);
             }
             closeModal();
         }
 
+        // Qatorni o'chirish
         function deleteRow(btn) {
-            if(confirm("O'chirishni xohlaysizmi?")) {
+            if(confirm("Haqiqatan ham bu qatorni o'chirmoqchimisiz?")) {
                 btn.closest('tr').remove();
             }
         }
 
+        // Chek chiqarish va chop etish funksiyasi
         function printReceipt(patient, service, price) {
             document.getElementById('r-patient').innerText = patient;
             document.getElementById('r-service').innerText = service;
