@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEDIK CLINIC - CRM Professional</title>
+    <title>MEDIK CLINIC - Rasmiy Veb-sayt va CRM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -16,165 +16,157 @@
 </head>
 <body class="bg-slate-900 font-sans antialiased text-slate-100 h-screen overflow-hidden flex flex-col">
 
-    <!-- LOGIN OYNASI -->
-    <div id="login-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center">
-        <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl w-96">
-            <div class="flex flex-col items-center mb-6">
-                <div class="bg-gradient-to-tr from-indigo-600 to-violet-600 text-white p-3.5 rounded-xl mb-3 shadow-lg shadow-indigo-600/30">
-                    <i data-lucide="activity" class="w-7 h-7"></i>
+    <!-- 1. OMMAVIY SAHIFA (Bemorlar va mehmonlar uchun) -->
+    <div id="public-site" class="flex-1 overflow-y-auto flex flex-col justify-between">
+        <header class="bg-slate-950 border-b border-slate-800 px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl">
+                    <i data-lucide="activity" class="w-5 h-5"></i>
                 </div>
-                <h2 class="text-xl font-bold tracking-tight">MEDIK CLINIC</h2>
-                <p class="text-xs text-slate-400 mt-1">Admin paneliga kirish</p>
+                <h1 class="text-base font-bold tracking-wider text-white">MEDIK CLINIC</h1>
             </div>
-            <form onsubmit="handleLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Login</label>
-                    <input type="text" id="username" value="admin" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-200" required>
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Parol</label>
-                    <input type="password" id="password" value="admin123" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-200" required>
-                </div>
-                <p id="login-error" class="text-xs text-rose-400 text-center hidden">Login (admin) yoki parol (admin123) xato!</p>
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-sm">
-                    Tizimga kirish
-                </button>
-            </form>
-            <div class="mt-4 text-center">
-                <span class="text-[11px] text-slate-500">Login: <b>admin</b> | Parol: <b>admin123</b></span>
+            <div class="flex items-center space-x-4">
+                <span class="text-xs text-slate-400">Ish vaqti: 24/7</span>
             </div>
-        </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto px-6 py-12 flex-1 w-full space-y-8">
+            <div class="text-center space-y-3">
+                <h2 class="text-3xl font-extrabold text-white">Klinikamizga Xush Kelibsiz</h2>
+                <p class="text-sm text-slate-400">Malakali shifokorlar qabuliga onlayn ro'yxatdan o'ting.</p>
+            </div>
+
+            <div class="bg-slate-950 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
+                <h3 class="text-lg font-bold text-indigo-400">Qabulga yozilish</h3>
+                <form onsubmit="handlePublicRegister(event)" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">F.I.Sh</label>
+                        <input type="text" id="pub-name" placeholder="Ism familiyangiz" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Telefon raqam</label>
+                        <input type="text" id="pub-phone" placeholder="+998 90 123-45-67" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" required>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Shifokor yoki Bo'limni tanlang</label>
+                        <select id="pub-service" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                            <option>Terapiya (Dr. Alisherov)</option>
+                            <option>Kardiologiya (Dr. Karimov)</option>
+                            <option>Nevrologiya (Dr. Saidov)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="col-span-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-sm">
+                        Ro'yxatdan o'tish
+                    </button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="bg-slate-950 border-t border-slate-800 py-4 text-center text-xs text-slate-500">
+            &copy; 2026 MEDIK CLINIC. Barcha huquqlar himoyalangan.
+        </footer>
     </div>
 
-    <!-- ASOSIY CRM -->
-    <div id="app-container" class="hidden flex-1 flex h-screen overflow-hidden">
-        
-        <!-- Sidebar -->
-        <aside class="w-64 bg-slate-950 border-r border-slate-800/80 flex flex-col justify-between">
+    <!-- 2. ADMIN PANEL (Yashirin rejim) -->
+    <div id="admin-container" class="hidden flex-1 flex h-screen overflow-hidden">
+        <aside class="w-64 bg-slate-950 border-r border-slate-800 flex flex-col justify-between">
             <div>
-                <div class="p-4 flex items-center justify-between border-b border-slate-800/80">
+                <div class="p-4 flex items-center justify-between border-b border-slate-800">
                     <div class="flex items-center space-x-3">
                         <div class="bg-indigo-600 text-white p-2 rounded-xl">
                             <i data-lucide="activity" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h1 class="text-xs font-bold tracking-wider text-white">MEDIK CLINIC</h1>
-                            <p class="text-[10px] text-slate-400">Pro CRM v2.0</p>
+                            <h1 class="text-xs font-bold text-white">MEDIK CLINIC</h1>
+                            <p class="text-[10px] text-slate-400">Admin Panel</p>
                         </div>
                     </div>
                 </div>
-
                 <nav class="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-130px)] text-sm">
-                    <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
                         <i data-lucide="pie-chart" class="w-4 h-4"></i><span>Dashboard</span>
                     </button>
-                    <button onclick="switchTab('patients')" id="btn-patients" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
-                        <i data-lucide="users" class="w-4 h-4"></i><span>Bemorlar</span>
+                    <button onclick="switchTab('patients')" id="btn-patients" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
+                        <i data-lucide="users" class="w-4 h-4"></i><span>Bemorlar (To'lov uchun bosing)</span>
                     </button>
-                    <button onclick="switchTab('appointments')" id="btn-appointments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('appointments')" id="btn-appointments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
                         <i data-lucide="calendar-check" class="w-4 h-4"></i><span>Qabullar</span>
                     </button>
-                    <button onclick="switchTab('doctors')" id="btn-doctors" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('doctors')" id="btn-doctors" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
                         <i data-lucide="user-plus" class="w-4 h-4"></i><span>Shifokorlar</span>
                     </button>
-                    <button onclick="switchTab('rooms')" id="btn-rooms" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('rooms')" id="btn-rooms" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
                         <i data-lucide="home" class="w-4 h-4"></i><span>Xonalar</span>
                     </button>
-                    <button onclick="switchTab('services')" id="btn-services" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('services')" id="btn-services" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
                         <i data-lucide="layers" class="w-4 h-4"></i><span>Xizmatlar</span>
                     </button>
-                    <button onclick="switchTab('payments')" id="btn-payments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <button onclick="switchTab('payments')" id="btn-payments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white">
                         <i data-lucide="credit-card" class="w-4 h-4"></i><span>To'lovlar & Chek</span>
-                    </button>
-                    <button onclick="switchTab('reports')" id="btn-reports" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white">
-                        <i data-lucide="bar-chart-2" class="w-4 h-4"></i><span>Hisobotlar</span>
                     </button>
                 </nav>
             </div>
-
-            <div class="p-3 border-t border-slate-800/80">
-                <button onclick="openLogin()" class="w-full flex items-center space-x-3 px-3.5 py-2 rounded-xl text-sm font-medium text-rose-400 hover:bg-rose-500/10 transition-all">
-                    <i data-lucide="log-out" class="w-4 h-4"></i><span>Chiqish</span>
+            <div class="p-3 border-t border-slate-800">
+                <button onclick="logoutAdmin()" class="w-full flex items-center space-x-3 px-3.5 py-2 rounded-xl text-sm font-medium text-rose-400 hover:bg-rose-500/10 transition-all">
+                    <i data-lucide="log-out" class="w-4 h-4"></i><span>Saytga qaytish</span>
                 </button>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <div class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-900">
-            
-            <header class="bg-slate-950 border-b border-slate-800/80 h-16 flex items-center justify-between px-8 z-10">
-                <div class="flex items-center w-96 bg-slate-900 rounded-xl px-3.5 py-2 border border-slate-800">
-                    <i data-lucide="search" class="w-4 h-4 text-slate-500 mr-2"></i>
-                    <input type="text" placeholder="Tizim bo'ylab qidirish..." class="bg-transparent border-none focus:outline-none text-sm w-full text-slate-200">
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-3 border-l pl-4 border-slate-800">
-                        <div class="text-right">
-                            <p class="text-xs font-bold text-slate-200">Administrator</p>
-                            <p class="text-[10px] text-indigo-400">To'liq huquqli</p>
-                        </div>
-                        <div class="w-9 h-9 bg-indigo-600 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-md">
-                            AD
-                        </div>
-                    </div>
-                </div>
+            <header class="bg-slate-950 border-b border-slate-800 h-16 flex items-center justify-between px-8">
+                <h2 class="text-sm font-bold text-white">Admin Boshqaruv Markazi</h2>
+                <span class="text-xs bg-indigo-600/20 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/30">Administrator</span>
             </header>
 
             <main class="flex-1 overflow-y-auto p-8">
-                
-                <!-- 1. DASHBOARD -->
+                <!-- Dashboard -->
                 <div id="tab-dashboard" class="space-y-6">
-                    <h2 class="text-2xl font-bold tracking-tight text-white">Asosiy Ko'rsatkichlar</h2>
-                    <div class="grid grid-cols-4 gap-6">
-                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-lg">
-                            <p class="text-xs text-slate-400 font-bold uppercase">Jami Bemorlar</p>
+                    <h2 class="text-2xl font-bold text-white">Ko'rsatkichlar</h2>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                            <p class="text-xs text-slate-400 uppercase font-bold">Jami Bemorlar</p>
                             <h3 id="stat-patients" class="text-3xl font-bold mt-2 text-white">1</h3>
                         </div>
-                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-lg">
-                            <p class="text-xs text-slate-400 font-bold uppercase">Faol Qabullar</p>
-                            <h3 id="stat-appointments" class="text-3xl font-bold mt-2 text-indigo-400">1</h3>
-                        </div>
-                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-lg">
-                            <p class="text-xs text-slate-400 font-bold uppercase">Shifokorlar</p>
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                            <p class="text-xs text-slate-400 uppercase font-bold">Shifokorlar</p>
                             <h3 id="stat-doctors" class="text-3xl font-bold mt-2 text-emerald-400">1</h3>
                         </div>
-                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-lg">
-                            <p class="text-xs text-slate-400 font-bold uppercase">Kassa Tushumi</p>
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                            <p class="text-xs text-slate-400 uppercase font-bold">Tushum</p>
                             <h3 id="stat-revenue" class="text-3xl font-bold mt-2 text-amber-400">150,000 so'm</h3>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2. BEMORLAR -->
+                <!-- Bemorlar (Ustiga bossa to'lov chiqadi) -->
                 <div id="tab-patients" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <div>
                             <h2 class="text-2xl font-bold text-white">Bemorlar Bazasi</h2>
-                            <p class="text-sm text-slate-400">Bemorlarni ro'yxatga olish, tahrirlash va o'chirish</p>
+                            <p class="text-sm text-slate-400">Bemor ustiga bosib to'lov qabul qilishingiz mumkin</p>
                         </div>
-                        <button onclick="openModal('patient')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all shadow-lg shadow-indigo-600/20">+ Yangi Bemor Qo'shish</button>
+                        <button onclick="openModal('patient')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Bemor qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-lg">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-800">
-                                    <th class="py-3.5 px-6 font-semibold">ID</th>
-                                    <th class="py-3.5 px-6 font-semibold">F.I.Sh</th>
-                                    <th class="py-3.5 px-6 font-semibold">Telefon</th>
-                                    <th class="py-3.5 px-6 font-semibold">Tashxis</th>
-                                    <th class="py-3.5 px-6 font-semibold text-right">Amallar</th>
+                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
+                                    <th class="py-3 px-6">ID</th>
+                                    <th class="py-3 px-6">F.I.Sh (Bosish mumkin)</th>
+                                    <th class="py-3 px-6">Telefon</th>
+                                    <th class="py-3 px-6">Tashxis</th>
+                                    <th class="py-3 px-6 text-right">Amallar</th>
                                 </tr>
                             </thead>
-                            <tbody id="table-patients" class="divide-y divide-slate-800/60 text-sm">
-                                <tr>
+                            <tbody id="table-patients" class="divide-y divide-slate-800 text-sm">
+                                <tr class="hover:bg-slate-900/50 cursor-pointer" onclick="openPaymentFromPatient('Anvar Karimov')">
                                     <td class="py-4 px-6 text-slate-400">#1</td>
-                                    <td class="py-4 px-6 font-medium text-white">Anvar Karimov</td>
+                                    <td class="py-4 px-6 font-medium text-indigo-400 underline">Anvar Karimov</td>
                                     <td class="py-4 px-6 text-slate-300">+998 90 111-22-33</td>
-                                    <td class="py-4 px-6 text-indigo-400">Terapiya</td>
-                                    <td class="py-4 px-6 text-right space-x-3">
-                                        <button onclick="editRow(this, 'patient')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button>
-                                        <button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button>
+                                    <td class="py-4 px-6 text-slate-300">Terapiya</td>
+                                    <td class="py-4 px-6 text-right space-x-2" onclick="event.stopPropagation()">
+                                        <button onclick="deleteRow(this)" class="text-rose-400 text-xs">O'chirish</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -182,219 +174,143 @@
                     </div>
                 </div>
 
-                <!-- 3. QABULLAR -->
+                <!-- Qabullar -->
                 <div id="tab-appointments" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">Qabullar Jadvali</h2>
-                            <p class="text-sm text-slate-400">Shifokor huzuriga navbatlar va vaqtlar</p>
-                        </div>
-                        <button onclick="openModal('appointment')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all">+ Qabul Qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">Qabullar</h2>
+                        <button onclick="openModal('appointment')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Qabul qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-lg">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-800">
-                                    <th class="py-3.5 px-6 font-semibold">Bemor</th>
-                                    <th class="py-3.5 px-6 font-semibold">Shifokor</th>
-                                    <th class="py-3.5 px-6 font-semibold">Vaqti</th>
-                                    <th class="py-3.5 px-6 font-semibold">Holati</th>
-                                    <th class="py-3.5 px-6 font-semibold text-right">Amallar</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-appointments" class="divide-y divide-slate-800/60 text-sm">
-                                <tr>
-                                    <td class="py-4 px-6 font-medium text-white">Anvar Karimov</td>
-                                    <td class="py-4 px-6 text-slate-300">Dr. Alisherov</td>
-                                    <td class="py-4 px-6 text-slate-400">Bugun, 10:00</td>
-                                    <td class="py-4 px-6 text-emerald-400">Tasdiqlangan</td>
-                                    <td class="py-4 px-6 text-right space-x-3">
-                                        <button onclick="editRow(this, 'appointment')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button>
-                                        <button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button>
-                                    </td>
-                                </tr>
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                        <table class="w-full text-left">
+                            <tbody id="table-appointments" class="divide-y divide-slate-800 text-sm">
+                                <tr><td class="py-4 px-6 text-white">Anvar Karimov - Dr. Alisherov (10:00)</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- 4. SHIFOKORLAR -->
+                <!-- Shifokorlar -->
                 <div id="tab-doctors" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">Shifokorlar</h2>
-                            <p class="text-sm text-slate-400">Mutaxassislar ro'yxati</p>
-                        </div>
-                        <button onclick="openModal('doctor')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all">+ Shifokor Qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">Shifokorlar</h2>
+                        <button onclick="openModal('doctor')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Shifokor qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-lg">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-800">
-                                    <th class="py-3.5 px-6 font-semibold">F.I.Sh</th>
-                                    <th class="py-3.5 px-6 font-semibold">Mutaxassislik</th>
-                                    <th class="py-3.5 px-6 font-semibold">Telefon</th>
-                                    <th class="py-3.5 px-6 font-semibold text-right">Amallar</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-doctors" class="divide-y divide-slate-800/60 text-sm">
-                                <tr>
-                                    <td class="py-4 px-6 font-medium text-white">Dr. Alisherov O.</td>
-                                    <td class="py-4 px-6 text-indigo-400">Kardiolog</td>
-                                    <td class="py-4 px-6 text-slate-300">+998 93 555-44-33</td>
-                                    <td class="py-4 px-6 text-right space-x-3">
-                                        <button onclick="editRow(this, 'doctor')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button>
-                                        <button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button>
-                                    </td>
-                                </tr>
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                        <table class="w-full text-left">
+                            <tbody id="table-doctors" class="divide-y divide-slate-800 text-sm">
+                                <tr><td class="py-4 px-6 text-white">Dr. Alisherov O. - Kardiolog</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- 5. XONALAR -->
+                <!-- Xonalar -->
                 <div id="tab-rooms" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">Xonalar va Kabinetlar</h2>
-                            <p class="text-sm text-slate-400">Bandlik holati</p>
-                        </div>
-                        <button onclick="openModal('room')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all">+ Xona Qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">Xonalar</h2>
+                        <button onclick="openModal('room')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Xona qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-lg">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-800">
-                                    <th class="py-3.5 px-6 font-semibold">Xona Raqami</th>
-                                    <th class="py-3.5 px-6 font-semibold">Turi</th>
-                                    <th class="py-3.5 px-6 font-semibold">Holati</th>
-                                    <th class="py-3.5 px-6 font-semibold text-right">Amallar</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-rooms" class="divide-y divide-slate-800/60 text-sm">
-                                <tr>
-                                    <td class="py-4 px-6 font-medium text-white">102-xona</td>
-                                    <td class="py-4 px-6 text-slate-300">Konsultatsiya</td>
-                                    <td class="py-4 px-6 text-emerald-400">Bo'sh</td>
-                                    <td class="py-4 px-6 text-right space-x-3">
-                                        <button onclick="editRow(this, 'room')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button>
-                                        <button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button>
-                                    </td>
-                                </tr>
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                        <table class="w-full text-left">
+                            <tbody id="table-rooms" class="divide-y divide-slate-800 text-sm">
+                                <tr><td class="py-4 px-6 text-white">102-xona (Bo'sh)</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- 6. XIZMATLAR -->
+                <!-- Xizmatlar -->
                 <div id="tab-services" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">Tibbiy Xizmatlar Katalogi</h2>
-                            <p class="text-sm text-slate-400">Narxlar va turlar</p>
-                        </div>
-                        <button onclick="openModal('service')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all">+ Xizmat Qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">Xizmatlar</h2>
+                        <button onclick="openModal('service')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ Xizmat qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-lg">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-800">
-                                    <th class="py-3.5 px-6 font-semibold">Xizmat Nomi</th>
-                                    <th class="py-3.5 px-6 font-semibold">Bo'lim</th>
-                                    <th class="py-3.5 px-6 font-semibold">Narxi</th>
-                                    <th class="py-3.5 px-6 font-semibold text-right">Amallar</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-services" class="divide-y divide-slate-800/60 text-sm">
-                                <tr>
-                                    <td class="py-4 px-6 font-medium text-white">Umumiy ko'rik</td>
-                                    <td class="py-4 px-6 text-slate-300">Terapiya</td>
-                                    <td class="py-4 px-6 text-amber-400 font-bold">150,000 so'm</td>
-                                    <td class="py-4 px-6 text-right space-x-3">
-                                        <button onclick="editRow(this, 'service')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button>
-                                        <button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button>
-                                    </td>
-                                </tr>
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                        <table class="w-full text-left">
+                            <tbody id="table-services" class="divide-y divide-slate-800 text-sm">
+                                <tr><td class="py-4 px-6 text-white">Umumiy ko'rik - 150,000 so'm</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- 7. TO'LOVLAR & CHEK CHIQARISH -->
+                <!-- To'lovlar & Chek -->
                 <div id="tab-payments" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">Kassa va To'lovlar</h2>
-                            <p class="text-sm text-slate-400">To'lovni qabul qilish va chek chiqarish</p>
-                        </div>
-                        <button onclick="openModal('payment')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all">+ To'lov Qo'shish</button>
+                        <h2 class="text-2xl font-bold text-white">To'lovlar va Cheklar</h2>
+                        <button onclick="openModal('payment')" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm">+ To'lov qo'shish</button>
                     </div>
-                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-lg">
-                        <table class="w-full text-left border-collapse">
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                        <table class="w-full text-left">
                             <thead>
-                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-800">
-                                    <th class="py-3.5 px-6 font-semibold">Bemor</th>
-                                    <th class="py-3.5 px-6 font-semibold">Xizmat</th>
-                                    <th class="py-3.5 px-6 font-semibold">Summa</th>
-                                    <th class="py-3.5 px-6 font-semibold text-right">Chek / Amallar</th>
+                                <tr class="bg-slate-900 text-slate-400 text-[11px] uppercase border-b border-slate-800">
+                                    <th class="py-3 px-6">Bemor</th>
+                                    <th class="py-3 px-6">Xizmat</th>
+                                    <th class="py-3 px-6">Summa</th>
+                                    <th class="py-3 px-6 text-right">Chek</th>
                                 </tr>
                             </thead>
-                            <tbody id="table-payments" class="divide-y divide-slate-800/60 text-sm">
+                            <tbody id="table-payments" class="divide-y divide-slate-800 text-sm">
                                 <tr>
-                                    <td class="py-4 px-6 font-medium text-white">Anvar Karimov</td>
+                                    <td class="py-4 px-6 text-white">Anvar Karimov</td>
                                     <td class="py-4 px-6 text-slate-300">Umumiy ko'rik</td>
                                     <td class="py-4 px-6 text-amber-400 font-bold">150,000 so'm</td>
-                                    <td class="py-4 px-6 text-right space-x-3">
-                                        <button onclick="printReceipt('Anvar Karimov', 'Umumiy ko\'rik', '150,000 so\'m')" class="bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 px-3 py-1 rounded-lg text-xs font-semibold border border-emerald-500/30">Chek chiqarish</button>
-                                        <button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button>
+                                    <td class="py-4 px-6 text-right">
+                                        <button onclick="printReceipt('Anvar Karimov', 'Umumiy ko\'rik', '150,000 so\'m')" class="bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-lg text-xs border border-emerald-500/30">Chek chiqarish</button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-                <!-- 8. HISOBOTLAR -->
-                <div id="tab-reports" class="hidden space-y-6">
-                    <h2 class="text-2xl font-bold text-white">Moliyaviy Hisobotlar</h2>
-                    <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-4">
-                        <p class="text-sm text-slate-300">Bugungi umumiy tushum: <b class="text-amber-400">150,000 so'm</b></p>
-                        <p class="text-sm text-slate-300">Jami qabul qilingan bemorlar: <b class="text-indigo-400">1 nafar</b></p>
-                        <button onclick="alert('Hisobot muvaffaqiyatli Excelga eksport qilindi!')" class="bg-slate-900 border border-slate-700 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-slate-800">Excel formatida yuklab olish</button>
-                    </div>
-                </div>
-
             </main>
         </div>
     </div>
 
-    <!-- PRINT AREA (Yashirin chek shabloni) -->
+    <!-- 3. KICHKINA YASHIRIN ADMIN KIRISH TUGMASI (Sahifa pastki o'ng burchagida) -->
+    <div class="fixed bottom-4 right-4 z-50">
+        <button onclick="openAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white p-2.5 rounded-full shadow-2xl border border-slate-700 transition-all">
+            <i data-lucide="lock" class="w-4 h-4"></i>
+        </button>
+    </div>
+
+    <!-- ADMIN KOD KIRITISH MODALI -->
+    <div id="admin-login-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl w-80 shadow-2xl space-y-4">
+            <h3 class="text-md font-bold text-white text-center">Admin Parolini Kiriting</h3>
+            <input type="password" id="admin-secret-pass" placeholder="Parol: admin123" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white text-center focus:outline-none focus:border-indigo-500">
+            <div class="flex space-x-2">
+                <button onclick="closeAdminModal()" class="w-1/2 bg-slate-900 text-slate-300 py-2 rounded-xl text-xs">Bekor qilish</button>
+                <button onclick="verifyAdminPass()" class="w-1/2 bg-indigo-600 text-white py-2 rounded-xl text-xs font-medium">Kirish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRINT AREA (Chek shabloni) -->
     <div id="print-area" class="hidden p-8 bg-white text-slate-900 w-80 mx-auto font-mono">
         <div class="text-center border-b pb-4 mb-4">
             <h2 class="font-bold text-lg">MEDIK CLINIC</h2>
-            <p class="text-xs text-slate-500">Moliya va Kassa Cheki</p>
+            <p class="text-xs text-slate-500">Kassa Cheki</p>
             <p id="receipt-date" class="text-[10px] text-slate-400 mt-1"></p>
         </div>
         <div class="space-y-2 text-xs">
             <p><b>Bemor:</b> <span id="r-patient"></span></p>
             <p><b>Xizmat:</b> <span id="r-service"></span></p>
-            <p class="border-t pt-2 mt-2 text-sm flex justify-space"><b>Jami:</b> <span id="r-price" class="font-bold"></span></p>
+            <p class="border-t pt-2 mt-2 text-sm flex justify-between"><b>Jami:</b> <span id="r-price" class="font-bold"></span></p>
         </div>
         <div class="text-center text-[10px] text-slate-400 mt-6 border-t pt-4">
-            <p>Sog'lom bo'ling! Xizmatingizdan mamnunmiz.</p>
+            <p>Sog'lom bo'ling!</p>
         </div>
     </div>
 
-    <!-- UNIVERSAL MODAL OYNA -->
+    <!-- UNIVERSAL QO'SHISH MODALI -->
     <div id="universal-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl w-96 shadow-2xl space-y-4">
-            <h3 id="modal-title" class="text-lg font-bold text-white">Ma'lumot qo'shish</h3>
-            <div id="modal-fields" class="space-y-3">
-                <!-- Dinamik inputlar -->
-            </div>
+            <h3 id="modal-title" class="text-lg font-bold text-white">Qo'shish</h3>
+            <div id="modal-fields" class="space-y-3"></div>
             <div class="flex justify-end space-x-2 pt-2">
-                <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-sm bg-slate-900 text-slate-300 hover:bg-slate-800">Bekor qilish</button>
-                <button onclick="saveModalData()" class="px-4 py-2 rounded-xl text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-medium">Saqlash</button>
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-sm bg-slate-900 text-slate-300">Bekor qilish</button>
+                <button onclick="saveModalData()" class="px-4 py-2 rounded-xl text-sm bg-indigo-600 text-white font-medium">Saqlash</button>
             </div>
         </div>
     </div>
@@ -404,80 +320,67 @@
         lucide.createIcons();
         let currentType = '';
 
-        function handleLogin(event) {
-            event.preventDefault();
-            const u = document.getElementById('username').value;
-            const p = document.getElementById('password').value;
-            if(u === 'admin' && p === 'admin123') {
-                document.getElementById('login-modal').classList.add('hidden');
-                document.getElementById('app-container').classList.remove('hidden');
-                updateStats();
+        function handlePublicRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('pub-name').value;
+            const phone = document.getElementById('pub-phone').value;
+            const service = document.getElementById('pub-service').value;
+            alert(name + ", qabulga muvaffaqiyatli yozildingiz! Tez orada siz bilan bog'lanamiz.");
+            document.getElementById('pub-name').value = '';
+            document.getElementById('pub-phone').value = '';
+        }
+
+        function openAdminModal() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-secret-pass').value = '';
+        }
+
+        function verifyAdminPass() {
+            const pass = document.getElementById('admin-secret-pass').value;
+            if(pass === 'admin123') {
+                document.getElementById('public-site').classList.add('hidden');
+                document.getElementById('admin-container').classList.remove('hidden');
+                closeAdminModal();
+                switchTab('dashboard');
             } else {
-                document.getElementById('login-error').classList.remove('hidden');
+                alert("Parol noto'g'ri!");
             }
         }
 
-        function openLogin() {
-            document.getElementById('app-container').classList.add('hidden');
-            document.getElementById('login-modal').classList.remove('hidden');
-            document.getElementById('password').value = '';
+        function logoutAdmin() {
+            document.getElementById('admin-container').classList.add('hidden');
+            document.getElementById('public-site').classList.remove('hidden');
         }
 
         function switchTab(tabId) {
-            const tabs = ['dashboard', 'patients', 'appointments', 'doctors', 'rooms', 'services', 'payments', 'reports'];
+            const tabs = ['dashboard', 'patients', 'appointments', 'doctors', 'rooms', 'services', 'payments'];
             tabs.forEach(id => {
                 const el = document.getElementById('tab-' + id);
                 const btn = document.getElementById('btn-' + id);
                 if(el) el.classList.add('hidden');
-                if(btn) btn.className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all text-slate-400 hover:bg-slate-900 hover:text-white";
+                if(btn) btn.className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium text-slate-400 hover:bg-slate-900 hover:text-white";
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/20";
+            document.getElementById('btn-' + tabId).className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl font-medium bg-indigo-600 text-white shadow-lg shadow-indigo-600/25";
+        }
+
+        function openPaymentFromPatient(patientName) {
+            if(confirm(patientName + " uchun to'lov oynasini ochishni xohlaysizmi?")) {
+                switchTab('payments');
+                printReceipt(patientName, "Umumiy ko'rik", "150,000 so'm");
+            }
         }
 
         function openModal(type) {
             currentType = type;
             const modal = document.getElementById('universal-modal');
             const fields = document.getElementById('modal-fields');
-            document.getElementById('modal-title').innerText = "Yangi " + type + " qo'shish";
-            fields.innerHTML = '';
-
-            if(type === 'patient') {
-                fields.innerHTML = `
-                    <input type="text" id="f-name" placeholder="F.I.Sh" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-phone" placeholder="Telefon raqami" value="+998 9" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-diag" placeholder="Tashxis" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                `;
-            } else if(type === 'appointment') {
-                fields.innerHTML = `
-                    <input type="text" id="f-pname" placeholder="Bemor F.I.Sh" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-dname" placeholder="Shifokor" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-time" placeholder="Vaqti (masalan: 12:00)" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                `;
-            } else if(type === 'doctor') {
-                fields.innerHTML = `
-                    <input type="text" id="f-name" placeholder="Shifokor F.I.Sh" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-spec" placeholder="Mutaxassisligi" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-phone" placeholder="Telefon" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                `;
-            } else if(type === 'room') {
-                fields.innerHTML = `
-                    <input type="text" id="f-rnum" placeholder="Xona raqami" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-rtype" placeholder="Turi" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                `;
-            } else if(type === 'service') {
-                fields.innerHTML = `
-                    <input type="text" id="f-sname" placeholder="Xizmat nomi" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-dept" placeholder="Bo'limi" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-price" placeholder="Narxi (so'm)" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                `;
-            } else if(type === 'payment') {
-                fields.innerHTML = `
-                    <input type="text" id="f-pname" placeholder="Bemor F.I.Sh" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-sname" placeholder="Xizmat nomi" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                    <input type="text" id="f-price" placeholder="Summa" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
-                `;
-            }
+            document.getElementById('modal-title').innerText = "Yangi qo'shish";
+            fields.innerHTML = `<input type="text" id="f-val1" placeholder="Nomi / F.I.Sh" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">`;
             modal.classList.remove('hidden');
         }
 
@@ -486,63 +389,20 @@
         }
 
         function saveModalData() {
+            const val = document.getElementById('f-val1').value;
+            if(!val) return alert("Qiymat kiriting!");
             const tbody = document.getElementById('table-' + currentType + 's');
-            let row = document.createElement('tr');
-            
-            if(currentType === 'patient') {
-                const name = document.getElementById('f-name').value;
-                const phone = document.getElementById('f-phone').value;
-                const diag = document.getElementById('f-diag').value;
-                if(!name) return alert("Ma'lumotlarni to'ldiring!");
-                row.innerHTML = `<td class="py-4 px-6 text-slate-400">#</td><td class="py-4 px-6 font-medium text-white">${name}</td><td class="py-4 px-6 text-slate-300">${phone}</td><td class="py-4 px-6 text-indigo-400">${diag}</td><td class="py-4 px-6 text-right space-x-3"><button onclick="editRow(this, 'patient')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button><button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button></td>`;
-            } else if(currentType === 'appointment') {
-                const p = document.getElementById('f-pname').value;
-                const d = document.getElementById('f-dname').value;
-                const t = document.getElementById('f-time').value;
-                if(!p) return alert("To'ldiring!");
-                row.innerHTML = `<td class="py-4 px-6 font-medium text-white">${p}</td><td class="py-4 px-6 text-slate-300">${d}</td><td class="py-4 px-6 text-slate-400">${t}</td><td class="py-4 px-6 text-emerald-400">Kutilmoqda</td><td class="py-4 px-6 text-right space-x-3"><button onclick="editRow(this, 'appointment')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button><button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button></td>`;
-            } else if(currentType === 'doctor') {
-                const n = document.getElementById('f-name').value;
-                const s = document.getElementById('f-spec').value;
-                const ph = document.getElementById('f-phone').value;
-                if(!n) return alert("To'ldiring!");
-                row.innerHTML = `<td class="py-4 px-6 font-medium text-white">${n}</td><td class="py-4 px-6 text-indigo-400">${s}</td><td class="py-4 px-6 text-slate-300">${ph}</td><td class="py-4 px-6 text-right space-x-3"><button onclick="editRow(this, 'doctor')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button><button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button></td>`;
-            } else if(currentType === 'room') {
-                const rn = document.getElementById('f-rnum').value;
-                const rt = document.getElementById('f-rtype').value;
-                if(!rn) return alert("To'ldiring!");
-                row.innerHTML = `<td class="py-4 px-6 font-medium text-white">${rn}</td><td class="py-4 px-6 text-slate-300">${rt}</td><td class="py-4 px-6 text-emerald-400">Bo'sh</td><td class="py-4 px-6 text-right space-x-3"><button onclick="editRow(this, 'room')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button><button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button></td>`;
-            } else if(currentType === 'service') {
-                const sn = document.getElementById('f-sname').value;
-                const sd = document.getElementById('f-dept').value;
-                const sp = document.getElementById('f-price').value;
-                if(!sn) return alert("To'ldiring!");
-                row.innerHTML = `<td class="py-4 px-6 font-medium text-white">${sn}</td><td class="py-4 px-6 text-slate-300">${sd}</td><td class="py-4 px-6 text-amber-400 font-bold">${sp}</td><td class="py-4 px-6 text-right space-x-3"><button onclick="editRow(this, 'service')" class="text-indigo-400 hover:underline text-xs font-semibold">Tahrirlash</button><button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button></td>`;
-            } else if(currentType === 'payment') {
-                const pn = document.getElementById('f-pname').value;
-                const sn = document.getElementById('f-sname').value;
-                const pr = document.getElementById('f-price').value;
-                if(!pn) return alert("To'ldiring!");
-                row.innerHTML = `<td class="py-4 px-6 font-medium text-white">${pn}</td><td class="py-4 px-6 text-slate-300">${sn}</td><td class="py-4 px-6 text-amber-400 font-bold">${pr}</td><td class="py-4 px-6 text-right space-x-3"><button onclick="printReceipt('${pn}', '${sn}', '${pr}')" class="bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 px-3 py-1 rounded-lg text-xs font-semibold border border-emerald-500/30">Chek chiqarish</button><button onclick="deleteRow(this)" class="text-rose-400 hover:underline text-xs font-semibold">O'chirish</button></td>`;
+            if(tbody) {
+                let row = document.createElement('tr');
+                row.innerHTML = `<td class="py-4 px-6 text-white">${val}</td>`;
+                tbody.appendChild(row);
             }
-
-            tbody.appendChild(row);
             closeModal();
-            updateStats();
         }
 
         function deleteRow(btn) {
-            if(confirm("Haqiqatan ham o'chirmoqchimisiz?")) {
+            if(confirm("O'chirishni xohlaysizmi?")) {
                 btn.closest('tr').remove();
-                updateStats();
-            }
-        }
-
-        function editRow(btn, type) {
-            const row = btn.closest('tr');
-            const newVal = prompt("Yangi qiymat kiriting (F.I.Sh / Nomi):", row.cells[1].innerText);
-            if(newVal) {
-                row.cells[1].innerText = newVal;
             }
         }
 
@@ -552,12 +412,6 @@
             document.getElementById('r-price').innerText = price;
             document.getElementById('receipt-date').innerText = new Date().toLocaleString();
             window.print();
-        }
-
-        function updateStats() {
-            document.getElementById('stat-patients').innerText = document.querySelectorAll('#table-patients tr').length;
-            document.getElementById('stat-appointments').innerText = document.querySelectorAll('#table-appointments tr').length;
-            document.getElementById('stat-doctors').innerText = document.querySelectorAll('#table-doctors tr').length;
         }
     </script>
 </body>
