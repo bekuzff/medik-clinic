@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEDIK CLINIC - CRM Tizimi</title>
-    <!-- Tailwind CSS va Lucide Iconlar -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @media print {
             body * { visibility: hidden; }
@@ -17,92 +16,57 @@
 </head>
 <body class="bg-slate-50 font-sans antialiased text-slate-800 h-screen overflow-hidden flex flex-col">
 
-    <!-- 1. OMMAVIY SAHIFA -->
-    <div id="public-site" class="flex-1 overflow-y-auto flex flex-col justify-between bg-slate-900 text-slate-100">
-        <header class="bg-slate-950 border-b border-slate-800 px-8 py-4 flex justify-between items-center shadow-md">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="showPublicHome()">
-                <div class="bg-emerald-600 text-white p-2 rounded-xl">
-                    <i data-lucide="activity" class="w-5 h-5"></i>
-                </div>
-                <h1 class="text-base font-bold tracking-wider text-white">MEDIK CLINIC</h1>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="showRegisterModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-medium transition-all shadow-md shadow-emerald-600/20">Qabulga yozilish</button>
-                <span class="text-xs text-slate-400">Ish vaqti: 24/7</span>
-            </div>
-        </header>
-
-        <main class="max-w-4xl mx-auto px-6 py-16 flex-1 w-full space-y-8 flex flex-col justify-center items-center text-center">
-            <div class="space-y-4 max-w-2xl">
-                <span class="bg-emerald-600/20 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/30">Ishonchli Tibbiy Markaz CRM</span>
-                <h2 class="text-4xl font-extrabold text-white tracking-tight">Sog'ligingiz — Bizning Oliy Maqsadimiz</h2>
-                <p class="text-sm text-slate-400 leading-relaxed">Malakali shifokorlar qabuliga onlayn yoziling, xizmatlarimizdan foydalaning va qulay tibbiy xizmatdan bahramand bo'ling.</p>
-                <div class="pt-4 flex justify-center space-x-4">
-                    <button onclick="showRegisterModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-6 py-3 rounded-xl shadow-lg shadow-emerald-600/20 transition-all text-sm">Onlayn Ro'yxatdan O'tish</button>
-                </div>
-            </div>
-        </main>
-
-        <footer class="bg-slate-950 border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-            &copy; 2026 MEDIK CLINIC CRM. Barcha huquqlar himoyalangan.
-        </footer>
-    </div>
-
-    <!-- 2. ADMIN CRM PANEL -->
-    <div id="admin-container" class="hidden flex-1 flex h-screen overflow-hidden">
+    <!-- ADMIN CRM PANEL -->
+    <div id="admin-container" class="flex-1 flex h-screen overflow-hidden">
+        
         <!-- Sidebar (To'q yashil) -->
         <aside class="w-64 bg-[#064e3b] text-emerald-50 border-r border-emerald-900 flex flex-col justify-between shadow-xl">
             <div>
                 <div class="p-4 flex items-center justify-between border-b border-emerald-800/60">
                     <div class="flex items-center space-x-3">
-                        <div class="bg-emerald-500 text-white p-2 rounded-xl">
-                            <i data-lucide="activity" class="w-5 h-5"></i>
-                        </div>
+                        <div class="bg-emerald-500 text-white font-bold p-2 rounded-xl text-xs">MC</div>
                         <div>
                             <h1 class="text-xs font-bold text-white">MEDIK CLINIC</h1>
                             <p class="text-[10px] text-emerald-200" id="user-role-badge-text">Administrator</p>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Menyu tugmalari -->
                 <nav class="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-130px)] text-sm font-medium">
-                    <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="pie-chart" class="w-4 h-4"></i><span>Dashboard</span>
+                    <button onclick="switchTab('dashboard')" id="btn-dashboard" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>📊 Dashboard</span>
                     </button>
-                    <button onclick="switchTab('patients')" id="btn-patients" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="users" class="w-4 h-4"></i><span>Bemorlar</span>
+                    <button onclick="switchTab('patients')" id="btn-patients" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>👥 Bemorlar</span>
                     </button>
-                    <button onclick="switchTab('appointments')" id="btn-appointments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="calendar-check" class="w-4 h-4"></i><span>Qabullar</span>
+                    <button onclick="switchTab('appointments')" id="btn-appointments" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>📅 Qabullar</span>
                     </button>
-                    <button onclick="switchTab('doctors')" id="btn-doctors" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="user-plus" class="w-4 h-4"></i><span>Shifokorlar</span>
+                    <button onclick="switchTab('doctors')" id="btn-doctors" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>👨‍⚕️ Shifokorlar</span>
                     </button>
-                    <button onclick="switchTab('rooms')" id="btn-rooms" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="home" class="w-4 h-4"></i><span>Xonalar</span>
+                    <button onclick="switchTab('rooms')" id="btn-rooms" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-emerald-800 text-white shadow-md transition-all text-left">
+                        <span>🏠 Xonalar</span>
                     </button>
-                    <button onclick="switchTab('services')" id="btn-services" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="layers" class="w-4 h-4"></i><span>Xizmatlar</span>
+                    <button onclick="switchTab('services')" id="btn-services" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>💉 Xizmatlar</span>
                     </button>
-                    <button onclick="switchTab('payments')" id="btn-payments" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="credit-card" class="w-4 h-4"></i><span>To'lovlar</span>
+                    <button onclick="switchTab('payments')" id="btn-payments" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>💳 To'lovlar</span>
                     </button>
-                    <button onclick="switchTab('reports')" id="btn-reports" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="bar-chart-2" class="w-4 h-4"></i><span>Hisobotlar</span>
+                    <button onclick="switchTab('reports')" id="btn-reports" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>📈 Hisobotlar</span>
                     </button>
-                    <button onclick="switchTab('notifications')" id="btn-notifications" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="bell" class="w-4 h-4"></i><span>Bildirishnomalar</span>
-                    </button>
-                    <button onclick="switchTab('settings')" id="btn-settings" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all">
-                        <i data-lucide="settings" class="w-4 h-4"></i><span>Sozlamalar</span>
+                    <button onclick="switchTab('settings')" id="btn-settings" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left">
+                        <span>⚙️ Sozlamalar</span>
                     </button>
                 </nav>
             </div>
-            <div class="p-3 border-t border-emerald-800/60 flex items-center justify-between">
-                <button onclick="logoutAdmin()" class="flex items-center space-x-2 px-3 py-2 rounded-xl text-xs font-medium text-rose-300 hover:bg-rose-500/20 transition-all">
-                    <i data-lucide="log-out" class="w-4 h-4"></i><span>Chiqish</span>
-                </button>
-                <button onclick="toggleUserRole()" id="role-toggle-btn" class="bg-emerald-800 hover:bg-emerald-700 text-emerald-100 px-2.5 py-1.5 rounded-xl text-[10px] font-semibold transition-all">
-                    Rol: Admin
+            
+            <div class="p-3 border-t border-emerald-800/60">
+                <button onclick="toggleUserRole()" id="role-toggle-btn" class="w-full bg-emerald-800 hover:bg-emerald-700 text-emerald-100 py-2 rounded-xl text-xs font-semibold transition-all text-center">
+                    Rol: Admin (O'zgartirish)
                 </button>
             </div>
         </aside>
@@ -110,15 +74,16 @@
         <!-- Asosiy Ishchi Maydoni -->
         <div class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-50 text-slate-800">
             <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 shadow-sm">
-                <h2 id="current-page-title" class="text-sm font-bold text-slate-800">Dashboard</h2>
+                <h2 id="current-page-title" class="text-sm font-bold text-slate-800">Xonalar</h2>
                 <div class="flex items-center space-x-3">
                     <span id="topbar-role-badge" class="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200 font-medium">Administrator</span>
                 </div>
             </header>
 
             <main class="flex-1 overflow-y-auto p-8 space-y-6">
+                
                 <!-- 1. DASHBOARD -->
-                <div id="tab-dashboard" class="space-y-6">
+                <div id="tab-dashboard" class="hidden space-y-6">
                     <h2 class="text-2xl font-bold text-slate-900">Bosh sahifa</h2>
                     <div class="grid grid-cols-4 gap-6">
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
@@ -144,7 +109,7 @@
                 <div id="tab-patients" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold text-slate-900">Bemorlar</h2>
-                        <button onclick="openModal('patient')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-md">+ Yangi bemor</button>
+                        <button onclick="openModal('bemor')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-md">+ Yangi bemor</button>
                     </div>
                     <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                         <table class="w-full text-left border-collapse">
@@ -176,7 +141,7 @@
                 <div id="tab-appointments" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold text-slate-900">Qabullar</h2>
-                        <button onclick="openModal('appointment')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Yangi qabul</button>
+                        <button onclick="openModal('qabul')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Yangi qabul</button>
                     </div>
                     <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                         <table class="w-full text-left border-collapse">
@@ -208,7 +173,7 @@
                 <div id="tab-doctors" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold text-slate-900">Shifokorlar</h2>
-                        <button onclick="openModal('doctor')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Shifokor qo'shish</button>
+                        <button onclick="openModal('shifokor')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Shifokor qo'shish</button>
                     </div>
                     <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                         <table class="w-full text-left border-collapse">
@@ -228,30 +193,23 @@
                     </div>
                 </div>
 
-                <!-- 5. XONALAR (Kartochkali dizayn va Admin/Non-admin boshqaruvi) -->
-                <div id="tab-rooms" class="hidden space-y-6">
+                <!-- 5. XONALAR (Asosiy bo'lim) -->
+                <div id="tab-rooms" class="space-y-6">
                     <div class="flex justify-between items-center">
                         <div>
                             <h2 class="text-2xl font-bold text-slate-900">Xonalar</h2>
                             <p class="text-xs text-slate-500 mt-1">Xonalar holati real vaqtda</p>
                         </div>
-                        <button onclick="openModal('room')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-md">+ Xona qo'shish</button>
-                    </div>
-
-                    <!-- Statistikq qator -->
-                    <div class="flex items-center space-x-6 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-sm">
-                        <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></i></span><span>Bo'sh: <b id="count-bosh">5</b></span></div>
-                        <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span><span>Band: <b id="count-band">3</b></span></div>
-                        <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span><span>Tozalashda: <b id="count-tozalash">1</b></span></div>
+                        <button onclick="openModal('xona')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-md">+ Xona qo'shish</button>
                     </div>
 
                     <!-- Kartochkalar gridi (101 dan 109 gacha) -->
-                    <div class="grid grid-cols-4 gap-6">
+                    <div class="grid grid-cols-3 gap-6">
                         <!-- 101 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <span class="text-xs text-slate-400 flex items-center space-x-1"><i data-lucide="home" class="w-3 h-3 inline"></i> <span>Xona</span></span>
+                                    <span class="text-xs text-slate-400">Xona</span>
                                     <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">101</h3>
                                 </div>
                                 <span id="badge-101" class="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-semibold">Bo'sh</span>
@@ -261,22 +219,19 @@
                                 <p class="text-xs text-slate-500 mt-0.5">Dr. Alisher Mirzayev</p>
                             </div>
                             <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-101">
-                                    <button onclick="setRoom('101', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('101', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('101', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
+                                <div class="space-x-1 room-action-btns">
+                                    <button onclick="setRoom('101', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium bg-slate-100 px-2 py-1 rounded">Bo'sh</button>
+                                    <button onclick="setRoom('101', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium bg-slate-100 px-2 py-1 rounded">Band</button>
+                                    <button onclick="setRoom('101', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium bg-slate-100 px-2 py-1 rounded">Tozalashda</button>
                                 </div>
-                                <button onclick="editRoom('101')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
                             </div>
                         </div>
 
                         <!-- 102 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <span class="text-xs text-slate-400"><i data-lucide="home" class="w-3 h-3 inline"></i> Xona</span>
+                                    <span class="text-xs text-slate-400">Xona</span>
                                     <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">102</h3>
                                 </div>
                                 <span id="badge-102" class="bg-rose-100 text-rose-700 px-2.5 py-1 rounded-full text-xs font-semibold">Band</span>
@@ -284,25 +239,21 @@
                             <div>
                                 <p class="text-sm font-semibold text-slate-800">Kardiologiya</p>
                                 <p class="text-xs text-slate-500 mt-0.5">Dr. Malika Hasanova</p>
-                                <p class="text-[11px] text-amber-600 mt-1">Hozir: Shahnoza Qodirova</p>
                             </div>
                             <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-102">
-                                    <button onclick="setRoom('102', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('102', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('102', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
+                                <div class="space-x-1 room-action-btns">
+                                    <button onclick="setRoom('102', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium bg-slate-100 px-2 py-1 rounded">Bo'sh</button>
+                                    <button onclick="setRoom('102', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium bg-slate-100 px-2 py-1 rounded">Band</button>
+                                    <button onclick="setRoom('102', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium bg-slate-100 px-2 py-1 rounded">Tozalashda</button>
                                 </div>
-                                <button onclick="editRoom('102')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
                             </div>
                         </div>
 
                         <!-- 103 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <span class="text-xs text-slate-400"><i data-lucide="home" class="w-3 h-3 inline"></i> Xona</span>
+                                    <span class="text-xs text-slate-400">Xona</span>
                                     <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">103</h3>
                                 </div>
                                 <span id="badge-103" class="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-semibold">Bo'sh</span>
@@ -312,47 +263,41 @@
                                 <p class="text-xs text-slate-500 mt-0.5">Dr. Zarina Olimova</p>
                             </div>
                             <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-103">
-                                    <button onclick="setRoom('103', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('103', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('103', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
+                                <div class="space-x-1 room-action-btns">
+                                    <button onclick="setRoom('103', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium bg-slate-100 px-2 py-1 rounded">Bo'sh</button>
+                                    <button onclick="setRoom('103', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium bg-slate-100 px-2 py-1 rounded">Band</button>
+                                    <button onclick="setRoom('103', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium bg-slate-100 px-2 py-1 rounded">Tozalashda</button>
                                 </div>
-                                <button onclick="editRoom('103')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
                             </div>
                         </div>
 
                         <!-- 104 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <span class="text-xs text-slate-400"><i data-lucide="home" class="w-3 h-3 inline"></i> Xona</span>
+                                    <span class="text-xs text-slate-400">Xona</span>
                                     <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">104</h3>
                                 </div>
                                 <span id="badge-104" class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-xs font-semibold">Tozalashda</span>
                             </div>
                             <div>
                                 <p class="text-sm font-semibold text-slate-800">Muolaja xonasi</p>
-                                <p class="text-xs text-slate-500 mt-0.5">Shifokor biriktirilmagan</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Hamshira xonasi</p>
                             </div>
                             <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-104">
-                                    <button onclick="setRoom('104', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('104', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('104', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
+                                <div class="space-x-1 room-action-btns">
+                                    <button onclick="setRoom('104', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium bg-slate-100 px-2 py-1 rounded">Bo'sh</button>
+                                    <button onclick="setRoom('104', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium bg-slate-100 px-2 py-1 rounded">Band</button>
+                                    <button onclick="setRoom('104', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium bg-slate-100 px-2 py-1 rounded">Tozalashda</button>
                                 </div>
-                                <button onclick="editRoom('104')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
                             </div>
                         </div>
 
                         <!-- 105 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <span class="text-xs text-slate-400"><i data-lucide="home" class="w-3 h-3 inline"></i> Xona</span>
+                                    <span class="text-xs text-slate-400">Xona</span>
                                     <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">105</h3>
                                 </div>
                                 <span id="badge-105" class="bg-rose-100 text-rose-700 px-2.5 py-1 rounded-full text-xs font-semibold">Band</span>
@@ -360,25 +305,21 @@
                             <div>
                                 <p class="text-sm font-semibold text-slate-800">Stomatologiya</p>
                                 <p class="text-xs text-slate-500 mt-0.5">Dr. Botir Usmonov</p>
-                                <p class="text-[11px] text-amber-600 mt-1">Hozir: Dilnoza Rahimova</p>
                             </div>
                             <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-105">
-                                    <button onclick="setRoom('105', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('105', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('105', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
+                                <div class="space-x-1 room-action-btns">
+                                    <button onclick="setRoom('105', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium bg-slate-100 px-2 py-1 rounded">Bo'sh</button>
+                                    <button onclick="setRoom('105', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium bg-slate-100 px-2 py-1 rounded">Band</button>
+                                    <button onclick="setRoom('105', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium bg-slate-100 px-2 py-1 rounded">Tozalashda</button>
                                 </div>
-                                <button onclick="editRoom('105')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
                             </div>
                         </div>
 
                         <!-- 106 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <span class="text-xs text-slate-400"><i data-lucide="home" class="w-3 h-3 inline"></i> Xona</span>
+                                    <span class="text-xs text-slate-400">Xona</span>
                                     <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">106</h3>
                                 </div>
                                 <span id="badge-106" class="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-semibold">Bo'sh</span>
@@ -388,64 +329,11 @@
                                 <p class="text-xs text-slate-500 mt-0.5">Dr. Farhod Rasulov</p>
                             </div>
                             <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-106">
-                                    <button onclick="setRoom('106', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('106', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('106', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
+                                <div class="space-x-1 room-action-btns">
+                                    <button onclick="setRoom('106', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium bg-slate-100 px-2 py-1 rounded">Bo'sh</button>
+                                    <button onclick="setRoom('106', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium bg-slate-100 px-2 py-1 rounded">Band</button>
+                                    <button onclick="setRoom('106', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium bg-slate-100 px-2 py-1 rounded">Tozalashda</button>
                                 </div>
-                                <button onclick="editRoom('106')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- 107 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <span class="text-xs text-slate-400"><i data-lucide="home" class="w-3 h-3 inline"></i> Xona</span>
-                                    <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">107</h3>
-                                </div>
-                                <span id="badge-107" class="bg-rose-100 text-rose-700 px-2.5 py-1 rounded-full text-xs font-semibold">Band</span>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold text-slate-800">Laboratoriya</p>
-                                <p class="text-xs text-slate-500 mt-0.5">Dr. Sevara Tursunova</p>
-                            </div>
-                            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-107">
-                                    <button onclick="setRoom('107', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('107', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('107', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
-                                </div>
-                                <button onclick="editRoom('107')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- 108 -->
-                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4 relative">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <span class="text-xs text-slate-400"><i data-lucide="home" class="w-3 h-3 inline"></i> Xona</span>
-                                    <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">108</h3>
-                                </div>
-                                <span id="badge-108" class="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-semibold">Bo'sh</span>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold text-slate-800">Diagnostika</p>
-                                <p class="text-xs text-slate-500 mt-0.5">Shifokor biriktirilmagan</p>
-                            </div>
-                            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div class="space-x-1 room-actions-108">
-                                    <button onclick="setRoom('108', 'Bosh')" class="text-slate-600 hover:text-emerald-600 font-medium">Bo'sh</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('108', 'Band')" class="text-slate-600 hover:text-rose-600 font-medium">Band</button>
-                                    <span class="text-slate-300">|</span>
-                                    <button onclick="setRoom('108', 'Tozalashda')" class="text-slate-600 hover:text-amber-600 font-medium">Tozalashda</button>
-                                </div>
-                                <button onclick="editRoom('108')" class="admin-only text-slate-400 hover:text-slate-600"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
                             </div>
                         </div>
                     </div>
@@ -455,7 +343,7 @@
                 <div id="tab-services" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold text-slate-900">Xizmatlar Narxlari</h2>
-                        <button onclick="openModal('service')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Xizmat qo'shish</button>
+                        <button onclick="openModal('xizmat')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ Xizmat qo'shish</button>
                     </div>
                     <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                         <table class="w-full text-left border-collapse">
@@ -479,7 +367,7 @@
                 <div id="tab-payments" class="hidden space-y-6">
                     <div class="flex justify-between items-center">
                         <h2 class="text-2xl font-bold text-slate-900">To'lovlar va Cheklar</h2>
-                        <button onclick="openModal('payment')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ To'lov qo'shish</button>
+                        <button onclick="openModal('tolov')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">+ To'lov qo'shish</button>
                     </div>
                     <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                         <table class="w-full text-left border-collapse">
@@ -511,24 +399,13 @@
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                         <p class="text-sm text-slate-600">Klinikaning oylik va haftalik moliyaviy hisobotlari.</p>
                         <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-                            <span class="text-xs text-slate-500">Jami tushum (Sentyabr):</span>
+                            <span class="text-xs text-slate-500">Jami tushum:</span>
                             <h4 class="text-2xl font-bold text-emerald-600 mt-1">4,250,000 so'm</h4>
                         </div>
                     </div>
                 </div>
 
-                <!-- 9. BILDIRISHNOMALAR -->
-                <div id="tab-notifications" class="hidden space-y-6">
-                    <h2 class="text-2xl font-bold text-slate-900">Bildirishnomalar</h2>
-                    <div class="bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 shadow-sm">
-                        <div class="p-4 flex items-center justify-between">
-                            <span class="text-sm text-slate-700">Yangi bemor Aziz Karimov ro'yxatdan o'tdi.</span>
-                            <span class="text-xs text-slate-400">Bugun, 18:30</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 10. SOZLAMALAR -->
+                <!-- 9. SOZLAMALAR -->
                 <div id="tab-settings" class="hidden space-y-6">
                     <h2 class="text-2xl font-bold text-slate-900">Sozlamalar</h2>
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 max-w-lg">
@@ -539,43 +416,12 @@
                         <button onclick="alert('Saqlandi!')" class="admin-only bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium">Saqlash</button>
                     </div>
                 </div>
+
             </main>
         </div>
     </div>
 
-    <!-- ADMIN KIRISH TUGMASI -->
-    <div class="fixed bottom-4 right-4 z-50">
-        <button onclick="openAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-3 rounded-full shadow-2xl border border-slate-700 transition-all" title="Admin panelga kirish">
-            <i data-lucide="lock" class="w-4 h-4"></i>
-        </button>
-    </div>
-
-    <!-- ADMIN PAROL MODALI -->
-    <div id="admin-login-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
-        <div class="bg-white border border-slate-200 p-6 rounded-2xl w-80 shadow-2xl space-y-4">
-            <h3 class="text-md font-bold text-slate-900 text-center">Admin Parolini Kiriting</h3>
-            <input type="password" id="admin-secret-pass" placeholder="Parol: admin123" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800 text-center focus:outline-none focus:border-emerald-500">
-            <div class="flex space-x-2">
-                <button onclick="closeAdminModal()" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 rounded-xl text-xs font-medium">Bekor qilish</button>
-                <button onclick="verifyAdminPass()" class="w-1/2 bg-emerald-600 hover:bg-emerald-500 text-white py-2 rounded-xl text-xs font-medium">Kirish</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- QABULGA YOZILISH MODALI -->
-    <div id="register-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center">
-        <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl w-full max-w-md shadow-2xl space-y-6 relative text-slate-100">
-            <button onclick="closeRegisterModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h3 class="text-xl font-bold text-white text-center">Qabulga yozilish</h3>
-            <form onsubmit="handlePublicRegister(event)" class="space-y-4">
-                <input type="text" id="pub-name" placeholder="Ism familiyangiz" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500" required>
-                <input type="text" id="pub-phone" placeholder="+998 90 123-45-67" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500" required>
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 rounded-xl shadow-lg text-sm">Tasdiqlash</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- KASSA CHEKI -->
+    <!-- KASSA CHEKI PRINT AREA -->
     <div id="print-area" class="hidden p-8 bg-white text-slate-900 w-80 mx-auto font-mono">
         <div class="text-center border-b pb-4 mb-4">
             <h2 class="font-bold text-lg">MEDIK CLINIC</h2>
@@ -589,119 +435,95 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT LOGIKA -->
     <script>
-        lucide.createIcons();
         let isAdmin = true;
 
-        function showRegisterModal() { document.getElementById('register-modal').classList.remove('hidden'); }
-        function closeRegisterModal() { document.getElementById('register-modal').classList.add('hidden'); }
-        function showPublicHome() {
-            document.getElementById('admin-container').classList.add('hidden');
-            document.getElementById('public-site').classList.remove('hidden');
-        }
-
-        function handlePublicRegister(e) {
-            e.preventDefault();
-            alert("Muvaffaqiyatli yozildingiz!");
-            closeRegisterModal();
-        }
-
-        function openAdminModal() { document.getElementById('admin-login-modal').classList.remove('hidden'); }
-        function closeAdminModal() { document.getElementById('admin-login-modal').classList.add('hidden'); }
-
-        function verifyAdminPass() {
-            const pass = document.getElementById('admin-secret-pass').value;
-            if(pass === 'admin123') {
-                document.getElementById('public-site').classList.add('hidden');
-                document.getElementById('admin-container').classList.remove('hidden');
-                closeAdminModal();
-                switchTab('dashboard');
-            } else {
-                alert("Parol noto'g'ri! (Parol: admin123)");
-            }
-        }
-
-        function logoutAdmin() {
-            document.getElementById('admin-container').classList.add('hidden');
-            document.getElementById('public-site').classList.remove('hidden');
-        }
-
-        // Rolni almashtirish (Admin / Non-admin xodim)
-        function toggleUserRole() {
-            isAdmin = !isAdmin;
-            const roleBtn = document.getElementById('role-toggle-btn');
-            const badgeText = document.getElementById('user-role-badge-text');
-            const topbarBadge = document.getElementById('topbar-role-badge');
-            
-            // Barcha "admin-only" elementlarni yo'q qilish yoki ko'rsatish
-            const adminElements = document.querySelectorAll('.admin-only');
-
-            if(isAdmin) {
-                roleBtn.innerText = "Rol: Admin";
-                badgeText.innerText = "Administrator";
-                topbarBadge.innerText = "Administrator";
-                topbarBadge.className = "text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200 font-medium";
-                adminElements.forEach(el => el.classList.remove('hidden'));
-            } else {
-                roleBtn.innerText = "Rol: Xodim";
-                badgeText.innerText = "Oddiy Xodim (Ko'rish)";
-                topbarBadge.innerText = "Klinika Xodimi";
-                topbarBadge.className = "text-xs bg-amber-100 text-amber-700 px-3 py-1 rounded-full border border-amber-200 font-medium";
-                adminElements.forEach(el => el.classList.add('hidden'));
-            }
-        }
-
+        // Sahifani tablar bo'yicha boshqarish
         function switchTab(tabId) {
-            const tabs = ['dashboard', 'patients', 'appointments', 'doctors', 'rooms', 'services', 'payments', 'reports', 'notifications', 'settings'];
+            const tabs = ['dashboard', 'patients', 'appointments', 'doctors', 'rooms', 'services', 'payments', 'reports', 'settings'];
+            
             tabs.forEach(id => {
                 const el = document.getElementById('tab-' + id);
                 const btn = document.getElementById('btn-' + id);
-                if(el) el.classList.add('hidden');
-                if(btn) btn.className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all";
+                if (el) el.classList.add('hidden');
+                if (btn) {
+                    btn.className = "w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-800/50 hover:text-white transition-all text-left";
+                }
             });
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).className = "nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-emerald-800 text-white shadow-md transition-all";
-            
+
+            const activeTab = document.getElementById('tab-' + tabId);
+            const activeBtn = document.getElementById('btn-' + tabId);
+
+            if (activeTab) activeTab.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.className = "w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-emerald-800 text-white shadow-md transition-all text-left";
+            }
+
             const titles = {
-                dashboard: 'Dashboard', patients: 'Bemorlar', appointments: 'Qabullar',
-                doctors: 'Shifokorlar', rooms: 'Xonalar', services: 'Xizmatlar',
-                payments: 'To'lovlar', reports: 'Hisobotlar', notifications: 'Bildirishnomalar', settings: 'Sozlamalar'
+                dashboard: 'Dashboard',
+                patients: 'Bemorlar',
+                appointments: 'Qabullar',
+                doctors: 'Shifokorlar',
+                rooms: 'Xonalar',
+                services: 'Xizmatlar',
+                payments: 'To\'lovlar',
+                reports: 'Hisobotlar',
+                settings: 'Sozlamalar'
             };
             document.getElementById('current-page-title').innerText = titles[tabId] || 'Admin Panel';
         }
 
-        // Xona statusini o'zgartirish
+        // Xonalar statusini o'zgartirish
         function setRoom(roomNum, status) {
+            if (!isAdmin) {
+                alert("Sizda xona holatini o'zgartirish huquqi yo'q!");
+                return;
+            }
             const badge = document.getElementById('badge-' + roomNum);
-            if(badge) {
-                if(status === 'Bosh') {
+            if (badge) {
+                if (status === 'Bosh') {
                     badge.className = "bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-semibold";
                     badge.innerText = "Bo'sh";
-                } else if(status === 'Band') {
+                } else if (status === 'Band') {
                     badge.className = "bg-rose-100 text-rose-700 px-2.5 py-1 rounded-full text-xs font-semibold";
                     badge.innerText = "Band";
-                } else if(status === 'Tozalashda') {
+                } else if (status === 'Tozalashda') {
                     badge.className = "bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-xs font-semibold";
                     badge.innerText = "Tozalashda";
                 }
             }
         }
 
-        function editRoom(roomNum) {
-            if(!isAdmin) {
-                alert("Sizda bu amalni bajarish huquqi yo'q (Faqat Admin o'zgartira oladi).");
-                return;
+        // Rolni o'zgartirish
+        function toggleUserRole() {
+            isAdmin = !isAdmin;
+            const roleBtn = document.getElementById('role-toggle-btn');
+            const badgeText = document.getElementById('user-role-badge-text');
+            const topbarBadge = document.getElementById('topbar-role-badge');
+            const adminElements = document.querySelectorAll('.admin-only');
+
+            if (isAdmin) {
+                roleBtn.innerText = "Rol: Admin (O'zgartirish)";
+                badgeText.innerText = "Administrator";
+                topbarBadge.innerText = "Administrator";
+                topbarBadge.className = "text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200 font-medium";
+                adminElements.forEach(el => el.style.display = 'inline-block');
+            } else {
+                roleBtn.innerText = "Rol: Oddiy Xodim (Faqat o'qish)";
+                badgeText.innerText = "Klinika Xodimi";
+                topbarBadge.innerText = "Klinika Xodimi";
+                topbarBadge.className = "text-xs bg-amber-100 text-amber-700 px-3 py-1 rounded-full border border-amber-200 font-medium";
+                adminElements.forEach(el => el.style.display = 'none');
             }
-            alert(roomNum + "-xonani tahrirlash oynasi");
         }
 
         function openModal(type) {
-            if(!isAdmin) {
+            if (!isAdmin) {
                 alert("Sizda bu amalni bajarish huquqi yo'q.");
                 return;
             }
-            alert("Yangi " + type + " qo'shish oynasi");
+            alert("Yangi " + type + " qo'shish oynasi ochildi.");
         }
 
         function printReceipt(patient, service, price) {
