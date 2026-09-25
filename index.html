@@ -8,248 +8,294 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-slate-50 font-sans antialiased text-slate-800">
+</head><body class="bg-slate-50 font-sans antialiased text-slate-800 flex h-screen overflow-hidden">
 
-    <div class="min-h-screen flex flex-col justify-between pb-20">
-        <!-- Yuqori Panel -->
-        <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-teal-600 text-white p-2 rounded-xl flex items-center justify-center">
-                        <i data-lucide="stethoscope" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold text-teal-700 tracking-tight">MEDIK CLINIC</h1>
-                        <p class="text-xs text-slate-500">Klinika Boshqaruv CRM Tizimi</p>
-                    </div>
+    <!-- Chap Sidebar -->
+    <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col justify-between border-r border-slate-800">
+        <div>
+            <!-- Logo -->
+            <div class="p-5 flex items-center space-x-3 border-b border-slate-800">
+                <div class="bg-teal-600 text-white p-2 rounded-xl flex items-center justify-center">
+                    <i data-lucide="stethoscope" class="w-6 h-6"></i>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <span class="text-sm font-medium text-slate-600">Admin: <strong class="text-slate-800">Bekuz</strong></span>
-                    <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold">B</div>
+                <div>
+                    <h1 class="text-base font-bold text-white tracking-tight">MEDIK CLINIC</h1>
+                    <p class="text-[11px] text-slate-400">CRM tizimi</p>
+                </div>
+            </div>
+
+            <!-- Menyular -->
+            <nav class="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-140px)]">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i><span>Dashboard</span>
+                </button>
+                <button onclick="switchTab('patients')" id="btn-patients" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="users" class="w-4 h-4"></i><span>Bemorlar</span>
+                </button>
+                <button onclick="switchTab('appointments')" id="btn-appointments" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="calendar" class="w-4 h-4"></i><span>Qabullar</span>
+                </button>
+                <button onclick="switchTab('doctors')" id="btn-doctors" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="stethoscope" class="w-4 h-4"></i><span>Shifokorlar</span>
+                </button>
+                <button onclick="switchTab('rooms')" id="btn-rooms" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="door-closed" class="w-4 h-4"></i><span>Xonalar</span>
+                </button>
+                <button onclick="switchTab('services')" id="btn-services" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="receipt" class="w-4 h-4"></i><span>Xizmatlar</span>
+                </button>
+                <button onclick="switchTab('payments')" id="btn-payments" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="credit-card" class="w-4 h-4"></i><span>To'lovlar</span>
+                </button>
+                <button onclick="switchTab('reports')" id="btn-reports" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="bar-chart-3" class="w-4 h-4"></i><span>Hisobotlar</span>
+                </button>
+                <button onclick="switchTab('notifications')" id="btn-notifications" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="bell" class="w-4 h-4"></i><span>Bildirishnomalar</span>
+                    </div>
+                    <span class="bg-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+                </button>
+                <button onclick="switchTab('audit')" id="btn-audit" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all bg-teal-600 text-white shadow-lg shadow-teal-600/20">
+                    <i data-lucide="history" class="w-4 h-4"></i><span>Audit Log</span>
+                </button>
+                <button onclick="switchTab('settings')" id="btn-settings" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                    <i data-lucide="settings" class="w-4 h-4"></i><span>Sozlamalar</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Chiqish -->
+        <div class="p-3 border-t border-slate-800">
+            <button onclick="alert('Tizimdan chiqish')" class="w-full flex items-center space-x-3 px-3 py-2 rounded-xl text-sm font-medium text-rose-400 hover:bg-rose-500/10 transition-all">
+                <i data-lucide="log-out" class="w-4 h-4"></i><span>Chiqish</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Asosiy Qism -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <!-- Yuqori Header -->
+        <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-6 z-10">
+            <div class="flex items-center w-96 bg-slate-100 rounded-xl px-3 py-2 border border-slate-200">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 mr-2"></i>
+                <input type="text" placeholder="Bemor qidirish: ism, telefon, ID..." class="bg-transparent border-none focus:outline-none text-sm w-full text-slate-700">
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <div class="relative cursor-pointer" onclick="switchTab('notifications')">
+                    <i data-lucide="bell" class="w-5 h-5 text-slate-600"></i>
+                    <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">3</span>
+                </div>
+                <div class="flex items-center space-x-3 border-l pl-4 border-slate-200">
+                    <div class="text-right">
+                        <p class="text-xs font-bold text-slate-800">Administrator</p>
+                        <p class="text-[10px] text-slate-500">admin@medikclinic.uz</p>
+                    </div>
+                    <div class="w-9 h-9 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-sm">
+                        AD
+                    </div>
                 </div>
             </div>
         </header>
 
-        <!-- Navigatsiya Menyusi -->
-        <nav class="bg-white border-b border-slate-200 shadow-xs">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-4 overflow-x-auto py-3">
-                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="px-4 py-2 rounded-xl text-sm font-medium transition-all bg-teal-600 text-white shadow-md shadow-teal-600/20 flex items-center space-x-2">
-                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i><span>Bosh sahifa</span>
-                </button>
-                <button onclick="switchTab('patients')" id="btn-patients" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 flex items-center space-x-2">
-                    <i data-lucide="users" class="w-4 h-4"></i><span>Bemorlar</span>
-                </button>
-                <button onclick="switchTab('appointments')" id="btn-appointments" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 flex items-center space-x-2">
-                    <i data-lucide="calendar" class="w-4 h-4"></i><span>Qabullar</span>
-                </button>
-                <button onclick="switchTab('doctors')" id="btn-doctors" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 flex items-center space-x-2">
-                    <i data-lucide="stethoscope" class="w-4 h-4"></i><span>Shifokorlar</span>
-                </button>
-                <button onclick="switchTab('rooms')" id="btn-rooms" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 flex items-center space-x-2">
-                    <i data-lucide="door-closed" class="w-4 h-4"></i><span>Xonalar</span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Asosiy Kontent -->
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+        <!-- Kontent Sahifalari -->
+        <main class="flex-1 overflow-y-auto p-8 bg-slate-50">
             
-            <!-- Dashboard Tab -->
-            <div id="tab-dashboard" class="space-y-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Bugungi bemorlar</p>
-                            <h3 class="text-2xl font-bold text-slate-800 mt-1">24 ta</h3>
-                        </div>
-                        <div class="bg-teal-50 text-teal-600 p-3 rounded-xl"><i data-lucide="users" class="w-6 h-6"></i></div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Faol navbatlar</p>
-                            <h3 class="text-2xl font-bold text-slate-800 mt-1">5 ta</h3>
-                        </div>
-                        <div class="bg-amber-50 text-amber-600 p-3 rounded-xl"><i data-lucide="calendar" class="w-6 h-6"></i></div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Bo'sh xonalar</p>
-                            <h3 class="text-2xl font-bold text-slate-800 mt-1">3 ta</h3>
-                        </div>
-                        <div class="bg-blue-50 text-blue-600 p-3 rounded-xl"><i data-lucide="door-closed" class="w-6 h-6"></i></div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Kunlik tushum</p>
-                            <h3 class="text-2xl font-bold text-slate-800 mt-1">1,850,000 so'm</h3>
-                        </div>
-                        <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl"><i data-lucide="credit-card" class="w-6 h-6"></i></div>
-                    </div>
+            <!-- Audit Log Tab (Rasmda ko'rsatilgan asosiy sahifa) -->
+            <div id="tab-audit" class="space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Audit Log</h2>
+                    <p class="text-sm text-slate-500 mt-0.5">Tizimdagi barcha harakatlar tarixi</p>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-slate-800">Oxirgi qabul qilingan bemorlar</h3>
-                        <button onclick="openModal()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all shadow-md shadow-teal-600/20">
-                            + Yangi bemor qo'shish
-                        </button>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between">
+                    <select class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none">
+                        <option>Barcha foydalanuvchilar</option>
+                        <option>Admin</option>
+                        <option>Dr. Malika Hasanova</option>
+                        <option>Dr. Alisher Mirzayev</option>
+                    </select>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50/70 text-slate-400 text-[11px] uppercase tracking-wider border-b border-slate-200">
+                                <th class="py-3.5 px-6 font-semibold">Foydalanuvchi</th>
+                                <th class="py-3.5 px-6 font-semibold">Harakat</th>
+                                <th class="py-3.5 px-6 font-semibold">Sana / Vaqt</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm">
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-6 flex items-center space-x-2">
+                                    <span class="w-7 h-7 bg-teal-100 text-teal-800 rounded-md flex items-center justify-center text-xs font-bold">A</span>
+                                    <span class="font-medium text-slate-700">Admin</span>
+                                </td>
+                                <td class="py-4 px-6 text-slate-700">Xona 104 statusini o'zgartirdi: Tozalashda</td>
+                                <td class="py-4 px-6 text-slate-500 text-xs">25.09.2026 10:30:00</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-6 flex items-center space-x-2">
+                                    <span class="w-7 h-7 bg-blue-100 text-blue-800 rounded-md flex items-center justify-center text-xs font-bold">MH</span>
+                                    <span class="font-medium text-slate-700">Dr. Malika Hasanova</span>
+                                </td>
+                                <td class="py-4 px-6 text-slate-700">Tashxis yozdi: Madina Yusupova - Arterial gipertenziya</td>
+                                <td class="py-4 px-6 text-slate-500 text-xs">25.09.2026 09:45:00</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-6 flex items-center space-x-2">
+                                    <span class="w-7 h-7 bg-teal-100 text-teal-800 rounded-md flex items-center justify-center text-xs font-bold">A</span>
+                                    <span class="font-medium text-slate-700">Admin</span>
+                                </td>
+                                <td class="py-4 px-6 text-slate-700">Payment yaratdi: Aziz Karimov - 120 000 so'm</td>
+                                <td class="py-4 px-6 text-slate-500 text-xs">25.09.2026 09:20:00</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-6 flex items-center space-x-2">
+                                    <span class="w-7 h-7 bg-indigo-100 text-indigo-800 rounded-md flex items-center justify-center text-xs font-bold">AM</span>
+                                    <span class="font-medium text-slate-700">Dr. Alisher Mirzayev</span>
+                                </td>
+                                <td class="py-4 px-6 text-slate-700">Tashxis yozdi: Aziz Karimov - O'tkir respirator infeksiya</td>
+                                <td class="py-4 px-6 text-slate-500 text-xs">25.09.2026 09:10:00</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-6 flex items-center space-x-2">
+                                    <span class="w-7 h-7 bg-teal-100 text-teal-800 rounded-md flex items-center justify-center text-xs font-bold">A</span>
+                                    <span class="font-medium text-slate-700">Admin</span>
+                                </td>
+                                <td class="py-4 px-6 text-slate-700">Appointment yaratdi: Otabek Nurmatov, 11:00</td>
+                                <td class="py-4 px-6 text-slate-500 text-xs">25.09.2026 08:40:00</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-6 flex items-center space-x-2">
+                                    <span class="w-7 h-7 bg-teal-100 text-teal-800 rounded-md flex items-center justify-center text-xs font-bold">A</span>
+                                    <span class="font-medium text-slate-700">Admin</span>
+                                </td>
+                                <td class="py-4 px-6 text-slate-700">Yangi bemor qo'shdi: Kamola Abdullayeva (P-1012)</td>
+                                <td class="py-4 px-6 text-slate-500 text-xs">25.09.2026 08:05:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Boshqa sahifalar (Dashboard, Bemorlar va h.k.) -->
+            <div id="tab-dashboard" class="hidden space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900">Dashboard</h2>
+                <div class="grid grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <p class="text-xs text-slate-400 font-bold uppercase">Bugungi bemorlar</p>
+                        <h3 class="text-3xl font-bold mt-1 text-slate-800">34 ta</h3>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-50 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-100">
-                                    <th class="py-4 px-6 font-semibold">ID</th>
-                                    <th class="py-4 px-6 font-semibold">Bemor F.I.Sh</th>
-                                    <th class="py-4 px-6 font-semibold">Telefon</th>
-                                    <th class="py-4 px-6 font-semibold">Shifokor</th>
-                                    <th class="py-4 px-6 font-semibold">Holati</th>
-                                </tr>
-                            </thead>
-                            <tbody id="patient-table-body" class="divide-y divide-slate-100 text-sm">
-                                <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="py-4 px-6 font-medium text-slate-600">#101</td>
-                                    <td class="py-4 px-6 font-bold text-slate-800">Tosheva Nilufar</td>
-                                    <td class="py-4 px-6 text-slate-600">+998 90 123 45 67</td>
-                                    <td class="py-4 px-6 text-slate-600">Dr. Karimov Aziz</td>
-                                    <td class="py-4 px-6"><span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold">Faol</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="py-4 px-6 font-medium text-slate-600">#102</td>
-                                    <td class="py-4 px-6 font-bold text-slate-800">Ergashev Jasur</td>
-                                    <td class="py-4 px-6 text-slate-600">+998 91 987 65 43</td>
-                                    <td class="py-4 px-6 text-slate-600">Dr. Yusupova Dilnoza</td>
-                                    <td class="py-4 px-6"><span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold">Kutilmoqda</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <p class="text-xs text-slate-400 font-bold uppercase">Faol navbatlar</p>
+                        <h3 class="text-3xl font-bold mt-1 text-slate-800">8 ta</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <p class="text-xs text-slate-400 font-bold uppercase">Bo'sh xonalar</p>
+                        <h3 class="text-3xl font-bold mt-1 text-slate-800">4 ta</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <p class="text-xs text-slate-400 font-bold uppercase">Tushum</p>
+                        <h3 class="text-3xl font-bold mt-1 text-slate-800">4,250,000 so'm</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Patients Tab -->
             <div id="tab-patients" class="hidden space-y-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex justify-between items-center">
-                    <h2 class="text-xl font-bold text-slate-800">Barcha Bemorlar ro'yxati</h2>
-                    <button onclick="openModal()" class="bg-teal-600 text-white px-4 py-2 rounded-xl text-sm font-medium">+ Yangi bemor</button>
-                </div>
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                    <p class="text-slate-500">Bemorlar bazasi va tibbiy kartochkalari shu yerda ko'rsatiladi.</p>
+                <h2 class="text-2xl font-bold text-slate-900">Bemorlar boshqaruvi</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Bemorlar bazasi va tibbiy kartochkalar ro'yxati.</p>
                 </div>
             </div>
 
-            <!-- Appointments Tab -->
             <div id="tab-appointments" class="hidden space-y-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h2 class="text-xl font-bold text-slate-800 mb-4">Navbatlar jadvali</h2>
-                    <p class="text-slate-500">Bugungi rejalashtirilgan qabullar ro'yxati.</p>
+                <h2 class="text-2xl font-bold text-slate-900">Qabullar jadvali</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Shifokorlar qabuliga yozilgan bemorlar ro'yxati.</p>
                 </div>
             </div>
 
-            <!-- Doctors Tab -->
             <div id="tab-doctors" class="hidden space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
-                        <div class="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">AK</div>
-                        <h3 class="font-bold text-slate-800">Dr. Karimov Aziz</h3>
-                        <p class="text-sm text-slate-500">Kardiolog</p>
-                        <span class="inline-block mt-3 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold">Ishda</span>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
-                        <div class="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">DY</div>
-                        <h3 class="font-bold text-slate-800">Dr. Yusupova Dilnoza</h3>
-                        <p class="text-sm text-slate-500">Terapevt</p>
-                        <span class="inline-block mt-3 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold">Ishda</span>
-                    </div>
+                <h2 class="text-2xl font-bold text-slate-900">Shifokorlar</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Klinika mutaxassislari ro'yxati.</p>
                 </div>
             </div>
 
-            <!-- Rooms Tab -->
             <div id="tab-rooms" class="hidden space-y-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 text-center">
-                        <h4 class="font-bold text-lg text-slate-800">101-xona</h4>
-                        <p class="text-xs text-emerald-600 font-semibold mt-1">Band</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 text-center">
-                        <h4 class="font-bold text-lg text-slate-800">102-xona</h4>
-                        <p class="text-xs text-blue-600 font-semibold mt-1">Bo'sh</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 text-center">
-                        <h4 class="font-bold text-lg text-slate-800">103-xona</h4>
-                        <p class="text-xs text-amber-600 font-semibold mt-1">Tozalashda</p>
-                    </div>
+                <h2 class="text-2xl font-bold text-slate-900">Xonalar holati</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Kabinetlar va statsionar xonalar bandligi.</p>
+                </div>
+            </div>
+
+            <div id="tab-services" class="hidden space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900">Tibbiy xizmatlar</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Xizmat turlari va ularning narxlari.</p>
+                </div>
+            </div>
+
+            <div id="tab-payments" class="hidden space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900">Kassa va To'lovlar</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Kirim qilingan to'lovlar tarixi.</p>
+                </div>
+            </div>
+
+            <div id="tab-reports" class="hidden space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900">Hisobotlar</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Oylik va kunlik moliyaviy hisobotlar.</p>
+                </div>
+            </div>
+
+            <div id="tab-notifications" class="hidden space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900">Bildirishnomalar</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-800">Yangi navbat yaratildi: Otabek Nurmatov, 11:00</div>
+                    <div class="p-3 bg-teal-50 border border-teal-200 rounded-xl text-sm text-teal-800">Xona 104 tozalab bo'lindi.</div>
+                    <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-sm text-blue-800">Yangi to'lov qabul qilindi: 120 000 so'm</div>
+                </div>
+            </div>
+
+            <div id="tab-settings" class="hidden space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900">Sozlamalar</h2>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600">Klinika va profil sozlamalari.</p>
                 </div>
             </div>
 
         </main>
-
-        <!-- Yangi Bemor qo'shish Modal Oynasi -->
-        <div id="patientModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center z-50 p-4">
-            <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4">
-                <h3 class="text-lg font-bold text-slate-800">Yangi bemor qo'shish</h3>
-                <input id="modalName" type="text" placeholder="Bemor F.I.Sh" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-600">
-                <input id="modalPhone" type="text" placeholder="Telefon raqami (+998 ...)" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-600">
-                <input id="modalDoctor" type="text" placeholder="Shifokor F.I.Sh" class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-600">
-                <div class="flex space-x-3 pt-2">
-                    <button onclick="closeModal()" class="w-1/2 bg-slate-100 text-slate-600 py-2 rounded-xl font-medium">Bekor qilish</button>
-                    <button onclick="addPatient()" class="w-1/2 bg-teal-600 text-white py-2 rounded-xl font-medium shadow-md shadow-teal-600/20">Saqlash</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
-            &copy; 2026 MEDIK CLINIC CRM. Barcha huquqlar himoyalangan.
-        </footer>
     </div>
 
-    <!-- Interaktivlik uchun JavaScript -->
+    <!-- JavaScript Interaktivlik -->
     <script>
         lucide.createIcons();
 
         function switchTab(tabId) {
-            ['dashboard', 'patients', 'appointments', 'doctors', 'rooms'].forEach(id => {
-                document.getElementById('tab-' + id).classList.add('hidden');
-                document.getElementById('btn-' + id).className = "px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 flex items-center space-x-2";
+            const tabs = ['dashboard', 'patients', 'appointments', 'doctors', 'rooms', 'services', 'payments', 'reports', 'notifications', 'audit', 'settings'];
+            
+            tabs.forEach(id => {
+                const el = document.getElementById('tab-' + id);
+                const btn = document.getElementById('btn-' + id);
+                if(el) el.classList.add('hidden');
+                if(btn) {
+                    btn.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white";
+                }
             });
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-teal-600 text-white shadow-md shadow-teal-600/20 flex items-center space-x-2";
-        }
 
-        function openModal() {
-            document.getElementById('patientModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('patientModal').classList.add('hidden');
-        }
-
-        function addPatient() {
-            const name = document.getElementById('modalName').value;
-            const phone = document.getElementById('modalPhone').value;
-            const doctor = document.getElementById('modalDoctor').value;
-
-            if(!name) {
-                alert("Iltimos, bemorning ismini kiriting!");
-                return;
+            const activeEl = document.getElementById('tab-' + tabId);
+            const activeBtn = document.getElementById('btn-' + tabId);
+            
+            if(activeEl) activeEl.classList.remove('hidden');
+            if(activeBtn) {
+                activeBtn.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all bg-teal-600 text-white shadow-lg shadow-teal-600/20";
             }
-
-            const tbody = document.getElementById('patient-table-body');
-            const newRow = document.createElement('tr');
-            newRow.className = "hover:bg-slate-50/50 transition-colors";
-            newRow.innerHTML = `
-                <td class="py-4 px-6 font-medium text-slate-600">#10${tbody.children.length + 1}</td>
-                <td class="py-4 px-6 font-bold text-slate-800">${name}</td>
-                <td class="py-4 px-6 text-slate-600">${phone || '+998 -- --- -- --'}</td>
-                <td class="py-4 px-6 text-slate-600">${doctor || 'Navbatchi shifokor'}</td>
-                <td class="py-4 px-6"><span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold">Faol</span></td>
-            `;
-            tbody.prepend(newRow);
-            closeModal();
-            document.getElementById('modalName').value = '';
-            document.getElementById('modalPhone').value = '';
-            document.getElementById('modalDoctor').value = '';
         }
     </script>
 </body>
